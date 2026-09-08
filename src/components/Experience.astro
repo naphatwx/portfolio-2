@@ -25,12 +25,12 @@ const t = useTranslations(lang);
             </ul>
           </div>
 
-          <div class="max-w-2xl">
+          <div>
             <p class="text-sm text-muted">{role.detail[lang]}</p>
 
             <dl class="mt-4">
               {role.points.map((point) => (
-                <div class="grid gap-0.5 border-t border-rule py-2.5 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <div class="grid gap-0.5 border-t border-rule py-2.5 sm:grid-cols-[14rem_1fr] sm:gap-8">
                   <dt class="label sm:pt-1">{point.label[lang]}</dt>
                   <dd class="text-sm text-muted">{point.text[lang]}</dd>
                 </div>
