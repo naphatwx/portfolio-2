@@ -1,0 +1,70 @@
+---
+import SocialIcon from './SocialIcon.astro';
+import { socials } from '../data/site';
+
+// icons: bare glyphs for the header. cards: full-width rows for the contact
+// section. inline: glyph plus name for the footer.
+interface Props {
+  variant?: 'icons' | 'cards' | 'inline';
+  class?: string;
+}
+const { variant = 'icons', class: className = '' } = Astro.props;
+---
+
+{variant === 'cards' ? (
+  <ul class:list={['grid gap-3 sm:grid-cols-2', className]}>
+    {socials.map((s) => (
+      <li>
+        <a
+          href={s.href}
+          target="_blank"
+          rel="me noopener"
+          class="group flex items-center gap-4 border border-rule p-4 text-left transition-colors hover:border-fg hover:bg-shade sm:p-5"
+        >
+          <SocialIcon id={s.id} class="size-6 shrink-0" />
+          <span class="min-w-0 flex-1">
+            <span class="block text-base tracking-tight sm:text-lg">{s.name}</span>
+            <span class="block truncate text-xs text-muted sm:text-sm">{s.handle}</span>
+          </span>
+          <span
+            class="shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-fg"
+            aria-hidden="true"
+          >↗</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+) : variant === 'inline' ? (
+  <ul class:list={['flex items-center gap-5', className]}>
+    {socials.map((s) => (
+      <li>
+        <a
+          href={s.href}
+          target="_blank"
+          rel="me noopener"
+          class="flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
+        >
+          <SocialIcon id={s.id} class="size-4" />
+          {s.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+) : (
+  <ul class:list={['flex items-center gap-1', className]}>
+    {socials.map((s) => (
+      <li>
+        <a
+          href={s.href}
+          target="_blank"
+          rel="me noopener"
+          aria-label={s.name}
+          title={s.name}
+          class="flex items-center border border-rule p-1.5 text-muted transition-colors hover:text-fg"
+        >
+          <SocialIcon id={s.id} class="size-4" />
+        </a>
+      </li>
+    ))}
+  </ul>
+)}

@@ -9,10 +9,28 @@ export const person = {
   // Phone from raw-data.md is deliberately unpublished — see README.
   email: 'naphat.watt2002@gmail.com',
   github: 'https://github.com/naphatwx',
-  linkedin: '#',
+  linkedin: 'https://www.linkedin.com/in/naphat-wattanarattanakul-6334b6295',
 };
 
 export const contact = person;
+
+/** Ordered for display: header icons, contact cards and footer all read this. */
+export const socials = [
+  {
+    id: 'github' as const,
+    name: 'GitHub',
+    handle: '@naphatwx',
+    href: person.github,
+  },
+  {
+    id: 'linkedin' as const,
+    name: 'LinkedIn',
+    handle: 'naphat-wattanarattanakul',
+    href: person.linkedin,
+  },
+];
+
+export type Social = (typeof socials)[number];
 
 export const stats: { value: string; label: Localized }[] = [
   { value: '2', label: { en: 'Years building', th: 'ปีที่ทำงาน' } },

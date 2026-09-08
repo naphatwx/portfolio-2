@@ -52,6 +52,9 @@ export const ui = {
 
     'contact.body': 'Email is fastest.',
 
+    'cta.emailLabel': 'Email',
+    'social.elsewhere': 'Or find me here',
+
     'footer.rights': 'All rights reserved.',
     'footer.builtWith': 'Built with Astro and Tailwind.',
 
@@ -103,6 +106,9 @@ export const ui = {
     'skills.title': 'เทคโนโลยีที่ใช้',
 
     'contact.body': 'ส่งอีเมลมาเร็วที่สุด',
+
+    'cta.emailLabel': 'อีเมล',
+    'social.elsewhere': 'หรือทักผมได้ที่นี่',
 
     'footer.rights': 'สงวนลิขสิทธิ์',
     'footer.builtWith': 'สร้างด้วย Astro และ Tailwind',

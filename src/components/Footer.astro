@@ -1,4 +1,5 @@
 ---
+import SocialLinks from './SocialLinks.astro';
 import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
 import { contact, person } from '../data/site';
 
@@ -41,9 +42,8 @@ const links = [
       class="mt-6 flex flex-col gap-2 border-t border-rule pt-5 sm:flex-row sm:items-center sm:justify-between"
     >
       <p class="label">© {year} {person.name} — {t('footer.rights')}</p>
-      <div class="flex items-center gap-6 text-sm">
-        <a href={contact.github} class="text-muted hover:text-fg" rel="me noopener">GitHub</a>
-        <a href={contact.linkedin} class="text-muted hover:text-fg" rel="me noopener">LinkedIn</a>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <SocialLinks variant="inline" />
         <span class="label hidden sm:inline">{t('footer.builtWith')}</span>
       </div>
     </div>

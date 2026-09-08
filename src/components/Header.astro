@@ -1,5 +1,6 @@
 ---
 import LangSwitch from './LangSwitch.astro';
+import SocialLinks from './SocialLinks.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
 import { contact } from '../data/site';
@@ -43,6 +44,7 @@ const links = [
       >
         {t('nav.bookCall')}<span aria-hidden="true">↗</span>
       </a>
+      <SocialLinks variant="icons" />
       <LangSwitch />
       <ThemeToggle />
     </div>
