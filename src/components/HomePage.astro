@@ -17,7 +17,7 @@ const t = useTranslations(lang);
 <Hero />
 <About />
 
-<Section id="work" title={t('work.title')} eyebrow={t('work.eyebrow')} note={t('work.note', { count: projects.length })}>
+<Section id="work" title={t('work.title')}>
   {projects.map((project) => <ProjectCard project={project} lang={lang} />)}
 </Section>
 

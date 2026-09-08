@@ -19,16 +19,11 @@ export const ui = {
 
     'about.eyebrow': 'About me',
     'about.lead': 'I build the platforms other engineers ship on.',
-    'exp.eyebrow': 'Experience',
-    'exp.title': 'Where I have worked',
-    'exp.intro': 'Platform and infrastructure work, plus a low-code internship before that.',
-    'certs.eyebrow': 'Certificates',
-    'certs.title': 'Proof of study',
-    'certs.note': '{count} certificates. Newest first.',
+    'exp.title': 'Experiences',
+    'certs.title': 'Certificates',
     'certs.view': 'View certificate',
     'cta.title': 'Got a problem worth solving?',
     'cta.body': 'Open to platform and infrastructure work. Tell me what is breaking.',
-    'work.eyebrow': 'Selected work',
     'nav.experience': 'Experience',
     'nav.certificates': 'Certificates',
 
@@ -43,8 +38,7 @@ export const ui = {
 
     'hero.headline': 'I build backend systems that stay boring under load.',
 
-    'work.title': 'Selected work',
-    'work.note': '{count} projects worth showing in detail.',
+    'work.title': 'Projects',
 
     'about.education': 'Education',
 
@@ -74,16 +68,11 @@ export const ui = {
 
     'about.eyebrow': 'เกี่ยวกับผม',
     'about.lead': 'ผมสร้างแพลตฟอร์มที่วิศวกรคนอื่นใช้ส่งงานขึ้นระบบ',
-    'exp.eyebrow': 'ประสบการณ์',
-    'exp.title': 'ที่ทำงานที่ผ่านมา',
-    'exp.intro': 'งานด้านแพลตฟอร์มและโครงสร้างพื้นฐาน และการฝึกงานสาย low-code ก่อนหน้านั้น',
-    'certs.eyebrow': 'ใบรับรอง',
-    'certs.title': 'หลักฐานการเรียน',
-    'certs.note': 'ใบรับรอง {count} ใบ เรียงจากใหม่ไปเก่า',
+    'exp.title': 'ประสบการณ์',
+    'certs.title': 'ใบรับรอง',
     'certs.view': 'ดูใบรับรอง',
     'cta.title': 'มีโจทย์ที่น่าแก้อยู่ไหม',
     'cta.body': 'สนใจงานแพลตฟอร์มและโครงสร้างพื้นฐาน เล่าให้ฟังได้เลยว่าติดอะไร',
-    'work.eyebrow': 'ผลงานที่คัดมา',
     'nav.experience': 'ประสบการณ์',
     'nav.certificates': 'ใบรับรอง',
 
@@ -98,8 +87,7 @@ export const ui = {
 
     'hero.headline': 'ผมสร้างระบบหลังบ้านที่ทำงานนิ่ง ๆ แม้โหลดหนัก',
 
-    'work.title': 'ผลงานที่คัดมา',
-    'work.note': 'โปรเจกต์ {count} ชิ้น ที่อยากเล่าละเอียด',
+    'work.title': 'ผลงาน',
 
     'about.education': 'การศึกษา',
 
