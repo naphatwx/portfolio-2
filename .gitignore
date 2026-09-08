@@ -7,5 +7,5 @@ dist/
 .env.production
 
 # Local working files: raw source photos, cert downloads, unpublished contact data
-assets/
+/assets/
 src/raw-data.md
