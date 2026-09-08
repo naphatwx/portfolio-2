@@ -55,8 +55,6 @@ raw-data.md                  Source CV content (not published)
   a type-only tile using its `short` wordmark.
 - The TOEIC entry deliberately has no thumbnail. The score report shows a date of birth
   and a registration ID, which should not go on a public page.
-- The phone number from `raw-data.md` is deliberately not published. Scrapers harvest
-  them off public pages. Add it to `person` in `src/data/site.ts` if you want it shown.
 - Hero stats are years of experience and certificate count — both derived from real data.
   Nothing on the page is invented.
 

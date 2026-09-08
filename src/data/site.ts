@@ -6,7 +6,6 @@ export type Localized = Record<Lang, string>;
 export const person = {
   name: 'Naphat Wattanarattnakul',
   shortName: 'Naphat',
-  // Phone from raw-data.md is deliberately unpublished — see README.
   email: 'naphat.watt2002@gmail.com',
   github: 'https://github.com/naphatwx',
   linkedin: 'https://www.linkedin.com/in/naphat-wattanarattanakul-6334b6295',
@@ -45,6 +44,10 @@ export const aboutPoints: Localized[] = [
   {
     en: 'My focus is developer autonomy: self-service platforms that remove the infrastructure bottleneck instead of staffing a queue in front of it.',
     th: 'เป้าหมายของผมคือให้นักพัฒนาทำงานได้เอง สร้างแพลตฟอร์มแบบบริการตัวเอง เพื่อลดคอขวดด้านโครงสร้างพื้นฐาน แทนที่จะตั้งคนมารอคิวจัดการ',
+  },
+  {
+    en: 'I work across the stack: services in Java and Spring Boot, Go and Node.js talking over gRPC, React, Next.js and Vue.js on the front, MySQL, PostgreSQL and InfluxDB behind them.',
+    th: 'ผมทำงานได้ทั้งระบบ ทั้งบริการที่เขียนด้วย Java และ Spring Boot, Go และ Node.js ที่คุยกันผ่าน gRPC, ฝั่งหน้าเว็บด้วย React, Next.js และ Vue.js และฐานข้อมูล MySQL, PostgreSQL และ InfluxDB',
   },
 ];
 
@@ -235,11 +238,11 @@ export const projects: Project[] = [
 export const skills: { group: Localized; items: string[] }[] = [
   {
     group: { en: 'Languages', th: 'ภาษา' },
-    items: ['Java', 'JavaScript', 'TypeScript', 'Go', 'SQL'],
+    items: ['Java', 'Go', 'JavaScript', 'TypeScript', 'SQL', 'HTML'],
   },
   {
     group: { en: 'Backend', th: 'ระบบหลังบ้าน' },
-    items: ['Spring Boot', 'AdonisJS', 'Go'],
+    items: ['Spring Boot', 'Go', 'Node.js', 'AdonisJS', 'gRPC'],
   },
   {
     group: { en: 'Frontend', th: 'ระบบหน้าบ้าน' },
@@ -251,15 +254,27 @@ export const skills: { group: Localized; items: string[] }[] = [
   },
   {
     group: { en: 'Database', th: 'ฐานข้อมูล' },
-    items: ['MySQL', 'MSSQL', 'PostgreSQL', 'InfluxDB'],
+    items: ['MySQL', 'MSSQL', 'PostgreSQL', 'InfluxDB', 'MongoDB'],
   },
   {
     group: { en: 'DevOps', th: 'DevOps' },
-    items: ['Docker', 'Nginx', 'Jenkins', 'SonarQube'],
+    items: ['Docker', 'Nginx', 'Jenkins', 'SonarQube', 'OutSystems'],
+  },
+  {
+    group: { en: 'Monitoring and testing', th: 'การเฝ้าดูและทดสอบ' },
+    items: ['Grafana', 'Unit testing', 'Postman'],
+  },
+  {
+    group: { en: 'AI tools', th: 'เครื่องมือ AI' },
+    items: ['Custom MCP'],
   },
   {
     group: { en: 'Version control', th: 'ระบบควบคุมเวอร์ชัน' },
     items: ['GitHub', 'GitLab'],
+  },
+  {
+    group: { en: 'Management', th: 'การจัดการงาน' },
+    items: ['Jira', 'Notion', 'Apidog'],
   },
 ];
 
