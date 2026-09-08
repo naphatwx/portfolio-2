@@ -24,7 +24,7 @@ Achromatic on purpose — there is no accent hue. Emphasis comes from type size,
 hairline rules and underlines. Adding a brand colour breaks the style.
 
 - Palette: light `#FFFFFF` / `#222222` / `#6E6E73` / `#E6E6E6`, dark inverted
-- Type: General Sans (Latin, Fontshare) + Anuphan (Thai, Google Fonts)
+- Type: Inter (Latin) + Anuphan (Thai), both from Google Fonts
 - `.display` — the oversized hero headline, with a separate Thai size and tracking
 - `.label` — small tracked caps; `.gutter-text` — rotated vertical microtext
 - Light is the default state; `.dark` on `<html>` is the opt-in

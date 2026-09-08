@@ -7,7 +7,7 @@
 /* Swiss editorial minimalism, light. Achromatic by design — emphasis comes
    from type size, weight and hairlines, never from hue. */
 @theme {
-  --font-sans: "General Sans", "Anuphan", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", "Anuphan", ui-sans-serif, system-ui, sans-serif;
 
   --breakpoint-3xl: 96rem;
 }
@@ -46,6 +46,8 @@
     background: var(--bg);
     color: var(--fg);
     font-family: var(--font-sans);
+    /* Inter defaults: contextual alternates + disambiguated 1/l/I. */
+    font-feature-settings: "cv05" 1, "cv08" 1, "calt" 1;
     text-rendering: optimizeLegibility;
   }
   /* Thai ascenders and tone marks need more vertical room than Latin. */

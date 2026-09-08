@@ -39,16 +39,12 @@ const canonical = new URL(Astro.url.pathname, origin);
     <meta property="og:locale" content={lang === 'th' ? 'th_TH' : 'en_US'} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- General Sans (Fontshare) for Latin, Anuphan (Google) for Thai. -->
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <!-- Inter for Latin, Anuphan for Thai. One request covers both. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Anuphan:wght@400;500;600&display=swap"
     />
 
     <!-- Inline and blocking: applies the theme before first paint, no flash. -->
