@@ -1,0 +1,26 @@
+---
+import { languages, type Lang } from '../i18n/ui';
+import { getLangFromUrl, useTranslations, getAlternates } from '../i18n/utils';
+
+const current = getLangFromUrl(Astro.url);
+const t = useTranslations(current);
+const alternates = getAlternates(Astro.url);
+---
+
+<div class="flex items-center border border-rule" role="group" aria-label={t('lang.switch')}>
+  {alternates.map(({ lang, path }) => (
+    <a
+      href={path}
+      hreflang={lang}
+      lang={lang}
+      aria-current={lang === current ? 'true' : undefined}
+      class:list={[
+        'px-2.5 py-1 text-xs font-medium transition-colors',
+        lang === current ? 'bg-fg text-bg' : 'text-muted hover:text-fg',
+      ]}
+    >
+      {lang === 'th' ? 'ไทย' : 'EN'}
+      <span class="sr-only">{languages[lang as Lang]}</span>
+    </a>
+  ))}
+</div>

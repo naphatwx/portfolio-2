@@ -1,0 +1,49 @@
+---
+import { experience } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="experience" class="scroll-mt-16 border-b border-rule">
+  <div class="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-28">
+    <p class="label reveal mb-10">{t('exp.eyebrow')}</p>
+
+    <div class="reveal mb-14 grid gap-6 lg:grid-cols-[1fr_minmax(0,24rem)] lg:items-start">
+      <h2 class="max-w-lg text-4xl tracking-tight sm:text-6xl">{t('exp.title')}</h2>
+      <p class="text-sm text-muted lg:pt-3">{t('exp.intro')}</p>
+    </div>
+
+    <ol>
+      {experience.map((role) => (
+        <li class="reveal grid gap-6 border-t border-rule py-10 lg:grid-cols-[16rem_1fr] lg:gap-8">
+          <div class="lg:sticky lg:top-24 lg:self-start">
+            <h3 class="text-xl tracking-tight sm:text-2xl">{role.company}</h3>
+            <p class="mt-2 text-sm">{role.title[lang]}</p>
+            <p class="label mt-2">{role.period[lang]}</p>
+
+            <ul class="mt-5 flex flex-wrap gap-2">
+              {role.tags.map((tag) => (
+                <li class="label border border-rule px-2.5 py-1">{tag}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="max-w-2xl">
+            <p class="text-muted">{role.detail[lang]}</p>
+
+            <dl class="mt-8">
+              {role.points.map((point) => (
+                <div class="grid gap-1 border-t border-rule py-4 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                  <dt class="label sm:pt-1">{point.label[lang]}</dt>
+                  <dd class="text-sm text-muted">{point.text[lang]}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

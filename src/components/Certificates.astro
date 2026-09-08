@@ -1,0 +1,61 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import { certificates } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Matched to certificates[].slug by filename.
+const files = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/certificates/*.{jpg,jpeg,png,webp}',
+  { eager: true },
+);
+const bySlug = new Map(
+  Object.entries(files).map(([path, mod]) => [
+    path.split('/').pop()!.replace(/\.[^.]+$/, ''),
+    mod.default,
+  ]),
+);
+---
+
+<section id="certificates" class="scroll-mt-16 border-b border-rule">
+  <div class="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-28">
+    <p class="label reveal mb-10">{t('certs.eyebrow')}</p>
+
+    <div class="reveal mb-14 grid gap-6 lg:grid-cols-[1fr_minmax(0,24rem)] lg:items-start">
+      <h2 class="text-4xl tracking-tight sm:text-6xl">{t('certs.title')}</h2>
+      <p class="text-sm text-muted lg:pt-3">{t('certs.note', { count: certificates.length })}</p>
+    </div>
+
+    <ul class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      {certificates.map((cert) => {
+        const img = bySlug.get(cert.slug);
+        return (
+          <li class="reveal">
+            <div class="overflow-hidden border border-rule bg-shade">
+              {img ? (
+                <Image
+                  src={img}
+                  alt={`${cert.title[lang]} — ${cert.issuer}`}
+                  widths={[400, 800]}
+                  sizes="(min-width: 1024px) 22rem, (min-width: 640px) 45vw, 90vw"
+                  class="aspect-4/3 w-full object-contain p-3 grayscale transition duration-300 hover:grayscale-0"
+                  loading="lazy"
+                />
+              ) : (
+                /* No thumbnail: keep the grid even with a type-only tile. */
+                <div class="flex aspect-4/3 w-full items-center justify-center p-6">
+                  <p class="text-4xl tracking-tight text-muted">{cert.short ?? cert.issuer}</p>
+                </div>
+              )}
+            </div>
+            <h3 class="mt-4 text-lg tracking-tight">{cert.title[lang]}</h3>
+            <p class="label mt-2">{cert.issuer} · {cert.year}</p>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>

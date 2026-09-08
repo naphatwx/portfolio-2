@@ -1,0 +1,26 @@
+---
+// Shared page body. Both /index.astro and /th/index.astro render this.
+import Hero from './Hero.astro';
+import About from './About.astro';
+import Section from './Section.astro';
+import ProjectCard from './ProjectCard.astro';
+import Experience from './Experience.astro';
+import Certificates from './Certificates.astro';
+import Cta from './Cta.astro';
+import { projects } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Hero />
+<About />
+
+<Section id="work" title={t('work.title')} eyebrow={t('work.eyebrow')} note={t('work.note', { count: projects.length })}>
+  {projects.map((project) => <ProjectCard project={project} lang={lang} />)}
+</Section>
+
+<Experience />
+<Certificates />
+<Cta />

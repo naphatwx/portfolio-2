@@ -1,0 +1,23 @@
+---
+import { contact } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="contact" class="scroll-mt-16 border-b border-rule">
+  <div class="mx-auto max-w-7xl px-6 py-24 text-center sm:px-10 sm:py-36">
+    <h2 class="reveal mx-auto max-w-3xl text-4xl leading-tight tracking-tight sm:text-6xl">
+      {t('cta.title')}
+    </h2>
+    <p class="reveal mx-auto mt-6 max-w-md text-muted">{t('cta.body')}</p>
+
+    <a
+      href={`mailto:${contact.email}`}
+      class="reveal mt-12 inline-flex items-center gap-2 text-xl tracking-tight underline decoration-1 underline-offset-8 hover:no-underline sm:text-3xl"
+    >
+      {contact.email}<span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</section>

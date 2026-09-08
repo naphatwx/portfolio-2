@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* Light is the default; dark is the opt-in class. Overrides Tailwind's
+   media-query dark variant so the toggle wins. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Swiss editorial minimalism, light. Achromatic by design — emphasis comes
+   from type size, weight and hairlines, never from hue. */
+@theme {
+  --font-sans: "General Sans", "Anuphan", ui-sans-serif, system-ui, sans-serif;
+
+  --breakpoint-3xl: 96rem;
+}
+
+/* Light is the default state. */
+:root {
+  --bg: #ffffff;
+  --fg: #222222;
+  --muted: #6e6e73;
+  --rule: #e6e6e6;
+  --shade: #f8f8f8;
+}
+
+:root.dark {
+  --bg: #111112;
+  --fg: #f8f8f8;
+  --muted: #8e8e93;
+  --rule: #26262a;
+  --shade: #1a1a1d;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-shade: var(--shade);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+  /* Thai ascenders and tone marks need more vertical room than Latin. */
+  :lang(th) body {
+    line-height: 1.8;
+  }
+  ::selection {
+    background: var(--fg);
+    color: var(--bg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Small tracked caps. Replaces the mono labels a Swiss layout would not use. */
+  .label {
+    font-size: 0.625rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Oversized headline: the one move that defines this style. */
+  .display {
+    font-size: clamp(3.5rem, 13vw, 11rem);
+    font-weight: 400;
+    line-height: 0.86;
+    letter-spacing: -0.045em;
+  }
+  /* Thai has no uppercase and sits shorter — needs a size and tracking nudge. */
+  :lang(th) .display {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  /* Vertical gutter text, reading bottom-to-top. */
+  .gutter-text {
+    writing-mode: vertical-rl;
+    rotate: 180deg;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 340ms ease-out, transform 340ms ease-out;
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
