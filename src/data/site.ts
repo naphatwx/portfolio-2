@@ -279,7 +279,7 @@ export const certificates: Certificate[] = [
     slug: 'toeic-2025',
     issuer: 'ETS',
     year: '2025',
-    title: { en: 'TOEIC Listening & Reading', th: 'TOEIC การฟังและการอ่าน' },
+    title: { en: 'TOEIC Listening & Reading Score 680', th: 'TOEIC การฟังและการอ่าน คะเเนน 680' },
     short: 'TOEIC',
   },
   {
