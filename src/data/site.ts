@@ -203,6 +203,33 @@ export const projects: Project[] = [
     ],
     stack: ['TypeScript', 'Next.js', 'PostgreSQL'],
   },
+  {
+    slug: 'taxi-ads-cms',
+    year: '2024 — 2025',
+    title: {
+      en: 'Taxi ads CMS',
+      th: 'ระบบจัดการโฆษณาบนแท็กซี่',
+    },
+    summary: {
+      en: 'Final-year capstone built for a partner company: a back office for the ads that run on taxis, from campaign setup through to the numbers they produce.',
+      th: 'โปรเจกต์จบที่ทำร่วมกับบริษัทพันธมิตร เป็นระบบหลังบ้านสำหรับดูแลโฆษณาที่ติดบนแท็กซี่ ตั้งแต่การตั้งค่าแคมเปญไปจนถึงตัวเลขผลลัพธ์',
+    },
+    points: [
+      {
+        en: 'Backend built with AdonisJS, covering the advertisement management APIs',
+        th: 'พัฒนาระบบหลังบ้านด้วย AdonisJS ครอบคลุม API จัดการโฆษณา',
+      },
+      {
+        en: 'User settings and permissions for the back-office team',
+        th: 'ตั้งค่าผู้ใช้และสิทธิ์การเข้าถึงสำหรับทีมหลังบ้าน',
+      },
+      {
+        en: 'Data visualization endpoints powering the reporting views',
+        th: 'ปลายทางข้อมูลสำหรับหน้ารายงานและกราฟสรุปผล',
+      },
+    ],
+    stack: ['AdonisJS', 'TypeScript', 'MySQL'],
+  },
 ];
 
 export const skills: { group: Localized; items: string[] }[] = [
