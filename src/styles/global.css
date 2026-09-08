@@ -50,7 +50,7 @@
   }
   /* Thai ascenders and tone marks need more vertical room than Latin. */
   :lang(th) body {
-    line-height: 1.8;
+    line-height: 1.65;
   }
   ::selection {
     background: var(--fg);
@@ -75,15 +75,15 @@
 
   /* Oversized headline: the one move that defines this style. */
   .display {
-    font-size: clamp(3.5rem, 13vw, 11rem);
+    font-size: clamp(2.75rem, 8.5vw, 6.5rem);
     font-weight: 400;
-    line-height: 0.86;
+    line-height: 0.9;
     letter-spacing: -0.045em;
   }
   /* Thai has no uppercase and sits shorter — needs a size and tracking nudge. */
   :lang(th) .display {
-    font-size: clamp(2.5rem, 8vw, 6rem);
-    line-height: 1.15;
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1.1;
     letter-spacing: -0.02em;
   }
 
