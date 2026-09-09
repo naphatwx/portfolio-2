@@ -11,10 +11,9 @@ export const ui = {
     'meta.description':
       'Infrastructure software engineer. Internal tools, deployment systems and developer infrastructure.',
 
-    'nav.home': 'Home',
-    'nav.work': 'Work',
     'nav.about': 'About',
-    'nav.contact': 'Contact',
+    'nav.projects': 'Projects',
+    'nav.contact': 'Contacts',
     'nav.skipToContent': 'Skip to content',
 
     'about.eyebrow': 'About me',
@@ -24,7 +23,7 @@ export const ui = {
     'certs.view': 'View certificate',
     'cta.title': 'Got a problem worth solving?',
     'cta.body': 'Open to platform and infrastructure work. Tell me what is breaking.',
-    'nav.experience': 'Experience',
+    'nav.experience': 'Experiences',
     'nav.certificates': 'Certificates',
 
     'hero.greeting': 'Hello',
@@ -35,7 +34,7 @@ export const ui = {
 
     'hero.headline': 'I build backend systems that stay boring under load.',
 
-    'work.title': 'Projects',
+    'projects.title': 'Projects',
 
     'about.education': 'Education',
 
@@ -57,9 +56,8 @@ export const ui = {
     'meta.description':
       'วิศวกรซอฟต์แวร์สายโครงสร้างพื้นฐาน ดูแลเครื่องมือภายใน ระบบดีพลอย และโครงสร้างสำหรับนักพัฒนา',
 
-    'nav.home': 'หน้าแรก',
-    'nav.work': 'ผลงาน',
     'nav.about': 'เกี่ยวกับ',
+    'nav.projects': 'ผลงาน',
     'nav.contact': 'ติดต่อ',
     'nav.skipToContent': 'ข้ามไปที่เนื้อหา',
 
@@ -81,7 +79,7 @@ export const ui = {
 
     'hero.headline': 'ผมสร้างระบบหลังบ้านที่ทำงานนิ่ง ๆ แม้โหลดหนัก',
 
-    'work.title': 'ผลงาน',
+    'projects.title': 'ผลงาน',
 
     'about.education': 'การศึกษา',
 
