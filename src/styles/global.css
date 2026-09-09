@@ -67,6 +67,19 @@
 }
 
 @layer components {
+  /* One shell width for every section. rem-based, so it tracks the 20px root. */
+  .shell {
+    width: 100%;
+    max-width: 62rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 40rem) {
+    .shell {
+      padding-inline: 2.5rem;
+    }
+  }
+
   /* Small tracked caps. Replaces the mono labels a Swiss layout would not use. */
   .label {
     font-size: 0.625rem;
