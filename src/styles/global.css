@@ -90,12 +90,6 @@
     line-height: 1.1;
     letter-spacing: -0.02em;
   }
-
-  /* Vertical gutter text, reading bottom-to-top. */
-  .gutter-text {
-    writing-mode: vertical-rl;
-    rotate: 180deg;
-  }
 }
 
 @layer utilities {

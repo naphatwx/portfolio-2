@@ -52,9 +52,8 @@ export const aboutPoints: Localized[] = [
 ];
 
 export const education = {
-  school: 'KMUTT',
   schoolFull: {
-    en: 'King Mongkut University of Technology Thonburi',
+    en: 'King Mongkut University of Technology Thonburi (KMUTT)',
     th: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี',
   },
   period: '2021 — 2025',

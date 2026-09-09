@@ -27,10 +27,8 @@ export const ui = {
     'nav.experience': 'Experience',
     'nav.certificates': 'Certificates',
 
-    'hero.role': 'Infrastructure Software Engineer',
-    'hero.year': '2026',
     'hero.greeting': 'Hello',
-    'hero.tagline': "— I'm Naphat, an infrastructure software engineer",
+    'hero.tagline': "I'm Naphat, an infrastructure software engineer",
     'stats.projects': 'Projects shipped',
     'stats.years': 'Years building',
     'nav.bookCall': 'Book a call',
@@ -55,7 +53,7 @@ export const ui = {
     'lang.switch': 'Switch language',
   },
   th: {
-    'meta.title': 'ณภัทร วัฒนรัตนกุล — วิศวกรซอฟต์แวร์',
+    'meta.title': 'นภัทร วัฒนรัตนกุล — วิศวกรซอฟต์แวร์',
     'meta.description':
       'วิศวกรซอฟต์แวร์สายโครงสร้างพื้นฐาน ดูแลเครื่องมือภายใน ระบบดีพลอย และโครงสร้างสำหรับนักพัฒนา',
 
@@ -75,10 +73,8 @@ export const ui = {
     'nav.experience': 'ประสบการณ์',
     'nav.certificates': 'ใบรับรอง',
 
-    'hero.role': 'วิศวกรซอฟต์แวร์ (โครงสร้างพื้นฐาน)',
-    'hero.year': '2569',
     'hero.greeting': 'สวัสดี',
-    'hero.tagline': '— ผมณภัทร วิศวกรซอฟต์แวร์สายโครงสร้างพื้นฐาน',
+    'hero.tagline': 'ผมนภัทร วิศวกรซอฟต์แวร์สายโครงสร้างพื้นฐาน',
     'stats.projects': 'โปรเจกต์ที่ส่งมอบ',
     'stats.years': 'ปีที่ทำงาน',
     'nav.bookCall': 'นัดคุย',

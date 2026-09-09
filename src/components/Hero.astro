@@ -14,12 +14,8 @@ const t = useTranslations(lang);
   <div
     class="mx-auto grid max-w-7xl grid-cols-[2rem_1fr] items-end gap-x-4 px-6 sm:px-10 lg:grid-cols-[3rem_1fr_minmax(0,26rem)]"
   >
-    <!-- Left gutter: rotated microtext, the Swiss signature. -->
-    <div class="flex flex-col items-center justify-between self-stretch border-r border-rule py-8">
-      <p class="gutter-text label">{t('hero.role')}</p>
-      <span class="my-4 w-px flex-1 bg-rule" aria-hidden="true"></span>
-      <p class="gutter-text label">{t('hero.year')}</p>
-    </div>
+    <!-- Left gutter: empty rule column, the Swiss signature. -->
+    <div class="self-stretch border-r border-rule" aria-hidden="true"></div>
 
     <div class="flex flex-col justify-between py-10 pl-2 sm:py-14 lg:pl-10">
       <div class="reveal flex gap-8 sm:gap-12">
