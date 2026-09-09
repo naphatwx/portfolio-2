@@ -40,7 +40,7 @@
 @layer base {
   html {
     /* Only px in the sheet: the rem base every other size scales from. */
-    font-size: 18px;
+    font-size: 20px;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
