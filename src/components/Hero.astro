@@ -4,7 +4,7 @@ import portrait from '../assets/portrait.png';
 import SocialLinks from './SocialLinks.astro';
 import Stat from './Stat.astro';
 import { stats } from '../data/site';
-import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -32,12 +32,6 @@ const t = useTranslations(lang);
       </div>
 
       <div class="reveal mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 sm:mt-14">
-        <a
-          href={`${localizePath('/', lang)}#work`}
-          class="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
-        >
-          {t('hero.scroll')}<span aria-hidden="true">↓</span>
-        </a>
         <SocialLinks variant="inline" />
       </div>
     </div>
