@@ -1,7 +1,6 @@
 ---
-import SocialLinks from './SocialLinks.astro';
 import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
-import { contact, person } from '../data/site';
+import { person } from '../data/site';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -19,33 +18,19 @@ const links = [
 
 <footer class="bg-shade">
   <div class="mx-auto max-w-7xl px-6 py-8 sm:px-10">
-    <div class="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
-      <nav>
-        <ul class="flex flex-wrap gap-x-6 gap-y-2">
-          {links.map(({ href, label }) => (
-            <li>
-              <a href={href} class="text-sm text-muted transition-colors hover:text-fg">{label}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+    <nav>
+      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        {links.map(({ href, label }) => (
+          <li>
+            <a href={href} class="text-sm text-muted transition-colors hover:text-fg">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
 
-      <a
-        href={`mailto:${contact.email}`}
-        class="text-lg tracking-tight underline decoration-1 underline-offset-6 hover:no-underline sm:text-xl"
-      >
-        {contact.email}
-      </a>
-    </div>
-
-    <div
-      class="mt-6 flex flex-col gap-2 border-t border-rule pt-5 sm:flex-row sm:items-center sm:justify-between"
-    >
-      <p class="label">© {year} {person.name} — {t('footer.rights')}</p>
-      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-        <SocialLinks variant="inline" />
-        <span class="label hidden sm:inline">{t('footer.builtWith')}</span>
-      </div>
+    <div class="mt-6 flex flex-col items-center gap-2 border-t border-rule pt-5">
+      <p class="label text-center">© {year} {person.name} — {t('footer.rights')}</p>
+      <span class="label text-center">{t('footer.builtWith')}</span>
     </div>
   </div>
 </footer>

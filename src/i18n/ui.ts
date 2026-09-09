@@ -31,7 +31,7 @@ export const ui = {
     'hero.tagline': "I'm Naphat, an infrastructure software engineer",
     'stats.projects': 'Projects shipped',
     'stats.years': 'Years building',
-    'nav.bookCall': 'Book a call',
+    'nav.email': 'Email',
 
     'hero.headline': 'I build backend systems that stay boring under load.',
 
@@ -77,7 +77,7 @@ export const ui = {
     'hero.tagline': 'ผมนภัทร วิศวกรซอฟต์แวร์สายโครงสร้างพื้นฐาน',
     'stats.projects': 'โปรเจกต์ที่ส่งมอบ',
     'stats.years': 'ปีที่ทำงาน',
-    'nav.bookCall': 'นัดคุย',
+    'nav.email': 'อีเมล',
 
     'hero.headline': 'ผมสร้างระบบหลังบ้านที่ทำงานนิ่ง ๆ แม้โหลดหนัก',
 
