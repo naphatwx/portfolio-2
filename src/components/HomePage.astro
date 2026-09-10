@@ -17,10 +17,11 @@ const t = useTranslations(lang);
 <Hero />
 <About />
 
+<Experience />
+
 <Section id="projects" title={t('projects.title')}>
   {projects.map((project) => <ProjectCard project={project} lang={lang} />)}
 </Section>
 
-<Experience />
 <Certificates />
 <Cta />
