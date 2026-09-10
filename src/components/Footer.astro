@@ -1,34 +1,15 @@
 ---
-import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
 import { person } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const home = localizePath('/', lang);
 const year = new Date().getFullYear();
-
-const links = [
-  { href: `${home}#about`, label: t('nav.about') },
-  { href: `${home}#projects`, label: t('nav.projects') },
-  { href: `${home}#experience`, label: t('nav.experience') },
-  { href: `${home}#certificates`, label: t('nav.certificates') },
-  { href: `${home}#contact`, label: t('nav.contact') },
-];
 ---
 
 <footer class="bg-shade">
   <div class="shell py-8">
-    <nav>
-      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-        {links.map(({ href, label }) => (
-          <li>
-            <a href={href} class="text-sm text-muted transition-colors hover:text-fg">{label}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-
-    <div class="mt-6 flex flex-col items-center gap-2 border-t border-rule pt-5">
+    <div class="flex flex-col items-center gap-2">
       <p class="label text-center">© {year} {person.name} — {t('footer.rights')}</p>
       <span class="label text-center">{t('footer.builtWith')}</span>
     </div>
