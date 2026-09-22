@@ -7,7 +7,7 @@ export type Lang = keyof typeof languages;
 
 export const ui = {
   en: {
-    'meta.title': 'Naphat Wattanarattnakul — Software Engineer',
+    'meta.title': 'Naphat Wattanarattanakul — Software Engineer',
     'meta.description':
       'Infrastructure software engineer. Internal tools, deployment systems and developer infrastructure.',
 

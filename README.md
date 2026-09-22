@@ -70,9 +70,6 @@ Missing keys fall back to English, so a partial translation still builds.
 ## Before deploying
 
 - Set the real `site` URL in `astro.config.mjs` — canonical tags and the sitemap use it.
-- Fill in the LinkedIn URL in `person` (`src/data/site.ts`); it is currently `#`.
-- Check the surname spelling. `raw-data.md` says *Wattanarattnakul*; the certificate
-  images read *Wattanarattanakul*. The site uses the former.
 - Replace `public/favicon.svg` if you want something other than the default mark.
 
 ## Testing narrow viewports

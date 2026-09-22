@@ -4,7 +4,7 @@ import type { Lang } from '../i18n/ui';
 export type Localized = Record<Lang, string>;
 
 export const person = {
-  name: 'Naphat Wattanarattnakul',
+  name: 'Naphat Wattanarattanakul',
   shortName: 'Naphat',
   email: 'naphat.watt2002@gmail.com',
   github: 'https://github.com/naphatwx',
