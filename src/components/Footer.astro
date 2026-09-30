@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import { person } from '../data/site';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
@@ -8,10 +9,11 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="bg-shade">
-  <div class="shell py-8">
-    <div class="flex flex-col items-center gap-2">
-      <p class="label text-center">© {year} {person.name} — {t('footer.rights')}</p>
-      <span class="label text-center">{t('footer.builtWith')}</span>
-    </div>
+  <div class="shell flex flex-col items-center justify-between gap-2 py-6 sm:flex-row">
+    <p class="text-xs text-muted">© {year} {person.name}</p>
+    <a href="#top" class="inline-flex h-9 items-center gap-2 text-xs text-muted transition-colors hover:text-fg">
+      {t('footer.top')}
+      <Icon id="arrow-up" class="size-3.5" />
+    </a>
   </div>
 </footer>

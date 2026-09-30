@@ -10,91 +10,97 @@ export const ui = {
     'meta.title': 'Naphat Wattanarattanakul — Software Engineer',
     'meta.description':
       'Infrastructure software engineer. Internal tools, deployment systems and developer infrastructure.',
+    'meta.ogAlt': 'Naphat Wattanarattanakul, infrastructure software engineer',
 
+    'nav.label': 'Sections',
+    'nav.menu': 'Menu',
     'nav.about': 'About',
+    'nav.experience': 'Experience',
     'nav.projects': 'Projects',
-    'nav.contact': 'Contacts',
+    'nav.contact': 'Contact',
     'nav.skipToContent': 'Skip to content',
 
-    'about.eyebrow': 'About me',
-    'about.lead': 'I build the platforms other engineers ship on.',
-    'exp.title': 'Experiences',
-    'certs.title': 'Certificates',
-    'certs.view': 'View certificate',
-    'cta.title': 'Got a problem worth solving?',
-    'cta.body': 'Open to platform and infrastructure work. Tell me what is breaking.',
-    'nav.experience': 'Experiences',
-    'nav.certificates': 'Certificates',
-
-    'hero.greeting': 'Hello',
-    'hero.tagline': "I'm Naphat, an infrastructure software engineer",
-    'stats.projects': 'Projects shipped',
-    'stats.years': 'Years building',
-    'nav.email': 'Email',
-
     'hero.headline': 'I build backend systems that stay boring under load.',
+    'hero.roleAt': '{role} at {company}',
+    'hero.location': 'Bangkok, Thailand',
+    'hero.emailMe': 'Email me',
+    'hero.cv': 'Download CV',
+    'hero.portraitAlt': 'Portrait of Naphat Wattanarattanakul',
+
+    'about.title': 'About',
+    'about.lead': 'I build the platforms other engineers ship on.',
+    'about.education': 'Education',
+    'skills.title': 'Stack',
+    'certs.title': 'Certificates',
+
+    'exp.title': 'Experience',
 
     'projects.title': 'Projects',
+    'projects.flowLabel': 'How a deploy moves through the platform',
+    'projects.visit': 'View project',
 
-    'about.education': 'Education',
-
-    'skills.title': 'Stack',
-
-    'contact.body': 'Email is fastest.',
-
+    'cta.title': 'Got a problem worth solving?',
+    'cta.body': 'Open to platform and infrastructure work. Tell me what is breaking.',
     'cta.emailLabel': 'Email',
+    'cta.copy': 'Copy',
+    'cta.copyLabel': 'Copy email address',
+    'cta.copied': 'Copied',
+    'cta.copiedStatus': 'Email address copied to clipboard',
     'social.elsewhere': 'Or find me here',
 
-    'footer.rights': 'All rights reserved.',
-    'footer.builtWith': 'Built with Astro and Tailwind.',
+    'footer.top': 'Back to top',
 
-    'theme.toggle': 'Toggle theme',
+    'theme.dark': 'Dark theme',
     'lang.switch': 'Switch language',
+    'a11y.newTab': '(opens in a new tab)',
   },
   th: {
     'meta.title': 'นภัทร วัฒนรัตนกุล — วิศวกรซอฟต์แวร์',
     'meta.description':
       'วิศวกรซอฟต์แวร์สายโครงสร้างพื้นฐาน ดูแลเครื่องมือภายใน ระบบดีพลอย และโครงสร้างสำหรับนักพัฒนา',
+    'meta.ogAlt': 'นภัทร วัฒนรัตนกุล วิศวกรซอฟต์แวร์สายโครงสร้างพื้นฐาน',
 
+    'nav.label': 'ส่วนต่าง ๆ ของหน้า',
+    'nav.menu': 'เมนู',
     'nav.about': 'เกี่ยวกับ',
+    'nav.experience': 'ประสบการณ์',
     'nav.projects': 'ผลงาน',
     'nav.contact': 'ติดต่อ',
     'nav.skipToContent': 'ข้ามไปที่เนื้อหา',
 
-    'about.eyebrow': 'เกี่ยวกับผม',
-    'about.lead': 'ผมสร้างแพลตฟอร์มที่วิศวกรคนอื่นใช้ส่งงานขึ้นระบบ',
-    'exp.title': 'ประสบการณ์',
-    'certs.title': 'ใบรับรอง',
-    'certs.view': 'ดูใบรับรอง',
-    'cta.title': 'มีโจทย์ที่น่าแก้อยู่ไหม',
-    'cta.body': 'สนใจงานแพลตฟอร์มและโครงสร้างพื้นฐาน เล่าให้ฟังได้เลยว่าติดอะไร',
-    'nav.experience': 'ประสบการณ์',
-    'nav.certificates': 'ใบรับรอง',
-
-    'hero.greeting': 'สวัสดี',
-    'hero.tagline': 'ผมนภัทร วิศวกรซอฟต์แวร์สายโครงสร้างพื้นฐาน',
-    'stats.projects': 'โปรเจกต์ที่ส่งมอบ',
-    'stats.years': 'ปีที่ทำงาน',
-    'nav.email': 'อีเมล',
-
     'hero.headline': 'ผมสร้างระบบหลังบ้านที่ทำงานนิ่ง ๆ แม้โหลดหนัก',
+    'hero.roleAt': '{role} ที่ {company}',
+    'hero.location': 'กรุงเทพฯ ประเทศไทย',
+    'hero.emailMe': 'ส่งอีเมลหาผม',
+    'hero.cv': 'ดาวน์โหลด CV',
+    'hero.portraitAlt': 'ภาพถ่ายของนภัทร วัฒนรัตนกุล',
+
+    'about.title': 'เกี่ยวกับผม',
+    'about.lead': 'ผมสร้างแพลตฟอร์มที่วิศวกรคนอื่นใช้ส่งงานขึ้นระบบ',
+    'about.education': 'การศึกษา',
+    'skills.title': 'เทคโนโลยีที่ใช้',
+    'certs.title': 'ใบรับรอง',
+
+    'exp.title': 'ประสบการณ์',
 
     'projects.title': 'ผลงาน',
+    'projects.flowLabel': 'เส้นทางของการดีพลอยผ่านแพลตฟอร์ม',
+    'projects.visit': 'ดูโปรเจกต์',
 
-    'about.education': 'การศึกษา',
-
-    'skills.title': 'เทคโนโลยีที่ใช้',
-
-    'contact.body': 'ส่งอีเมลมาเร็วที่สุด',
-
+    'cta.title': 'มีโจทย์ที่น่าแก้อยู่ไหม',
+    'cta.body': 'สนใจงานแพลตฟอร์มและโครงสร้างพื้นฐาน เล่าให้ฟังได้เลยว่าติดอะไร',
     'cta.emailLabel': 'อีเมล',
+    'cta.copy': 'คัดลอก',
+    'cta.copyLabel': 'คัดลอกที่อยู่อีเมล',
+    'cta.copied': 'คัดลอกแล้ว',
+    'cta.copiedStatus': 'คัดลอกที่อยู่อีเมลแล้ว',
     'social.elsewhere': 'หรือทักผมได้ที่นี่',
 
-    'footer.rights': 'สงวนลิขสิทธิ์',
-    'footer.builtWith': 'สร้างด้วย Astro และ Tailwind',
+    'footer.top': 'กลับขึ้นด้านบน',
 
-    'theme.toggle': 'สลับธีมสว่าง/มืด',
+    'theme.dark': 'ธีมมืด',
     'lang.switch': 'เปลี่ยนภาษา',
+    'a11y.newTab': '(เปิดในแท็บใหม่)',
   },
 } as const;
 

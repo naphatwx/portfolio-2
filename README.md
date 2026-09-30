@@ -20,16 +20,21 @@ translation.
 
 ## Design rules
 
-Achromatic on purpose — there is no accent hue. Emphasis comes from type size, weight,
-hairline rules and underlines. Adding a brand colour breaks the style.
+Near-achromatic. One accent, KMUTT red (from the portrait's gown), marks the primary
+action and live state only: email buttons, the "current role" dot, focus rings, selection.
+Everything else gets emphasis from type size, weight and hairline rules.
 
-- Palette: light `#FFFFFF` / `#222222` / `#6E6E73` / `#E6E6E6`, dark inverted
-- Type: Inter (Latin) + Anuphan (Thai), both from Google Fonts
-- `.display` — the oversized hero headline, with a separate Thai size and tracking
-- `.label` — small tracked caps; `.gutter-text` — rotated vertical microtext
+- Palette: light `#FFFFFF` / `#222222` / `#6E6E73` / `#E6E6E6`, accent `#C4291C`; dark
+  inverted, accent `#FF7A66`
+- Type: Inter (Latin) + Anuphan (Thai), weights 400 and 500, from Google Fonts
+- Root font size is 20px; breakpoints are set in px in `@theme` so `lg` stays 1024px
+- `.display`: the hero name, with a separate Thai size and tracking
+- `.section-title`: every section `h2`
+- `.label`: small tracked caps for metadata (dates, tags, key labels), untracked for Thai
 - Light is the default state; `.dark` on `<html>` is the opt-in
-- The OS `prefers-color-scheme` is deliberately ignored — light is the design, and only
-  an explicit toggle choice (stored in `localStorage`) switches to dark
+- The OS `prefers-color-scheme` is deliberately ignored; only an explicit toggle choice
+  (stored in `localStorage`) switches to dark
+- Motion: one moment only, the deploy flow in Projects runs once when scrolled into view
 
 ## Layout
 
@@ -38,25 +43,28 @@ src/
   data/site.ts               All content — edit here, not in components
   i18n/ui.ts                 UI strings, both locales
   i18n/utils.ts              t(), locale detection, path helpers
-  assets/portrait.png        Hero portrait, pre-greyscaled
-  assets/certificates/       Certificate thumbnails, matched by slug
-  components/Hero.astro      Headline, gutter text, stats, portrait
+  assets/portrait.png        Hero portrait, cut out and despilled
+  assets/certificates/       Certificate scans, linked full-size by slug
+  components/Hero.astro      Name, headline, current role, contact, portrait
   components/HomePage.astro  Shared page body for both locales
-  layouts/Base.astro         head, theme boot, scroll reveal
+  layouts/Base.astro         head, meta/OG tags, theme boot
   pages/index.astro          English
   pages/th/index.astro       Thai
+  pages/404.astro            Not-found page (bilingual)
 raw-data.md                  Source CV content (not published)
 ```
 
 ## Content notes
 
 - `src/data/site.ts` is the single source of content. Certificate entries are matched to
-  images in `src/assets/certificates/` by `slug`; an entry with no matching image renders
-  a type-only tile using its `short` wordmark.
+  images in `src/assets/certificates/` by `slug`; a matched title links to the full-size
+  scan, an unmatched one renders as plain text.
+- `person.cv`: set to a PDF in `public/` (e.g. `'/cv.pdf'`) to show the hero CV button.
+- `project.href`: set a repo or demo URL to turn the project title into a link.
 - The TOEIC entry deliberately has no thumbnail. The score report shows a date of birth
   and a registration ID, which should not go on a public page.
-- Hero stats are years of experience and certificate count — both derived from real data.
-  Nothing on the page is invented.
+- Nothing on the page is invented. The hero role line is read from the first
+  `experience` entry.
 
 ## Adding a locale
 
@@ -70,7 +78,8 @@ Missing keys fall back to English, so a partial translation still builds.
 ## Before deploying
 
 - Set the real `site` URL in `astro.config.mjs` — canonical tags and the sitemap use it.
-- Replace `public/favicon.svg` if you want something other than the default mark.
+- `public/og.png` is the 1200×630 share image. Regenerate it if the name, headline or
+  portrait changes.
 
 ## Testing narrow viewports
 

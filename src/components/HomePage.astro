@@ -5,7 +5,6 @@ import About from './About.astro';
 import Section from './Section.astro';
 import ProjectCard from './ProjectCard.astro';
 import Experience from './Experience.astro';
-import Certificates from './Certificates.astro';
 import Cta from './Cta.astro';
 import { projects } from '../data/site';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
@@ -16,12 +15,10 @@ const t = useTranslations(lang);
 
 <Hero />
 <About />
-
 <Experience />
 
 <Section id="projects" title={t('projects.title')}>
   {projects.map((project) => <ProjectCard project={project} lang={lang} />)}
 </Section>
 
-<Certificates />
 <Cta />

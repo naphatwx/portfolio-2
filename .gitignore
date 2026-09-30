@@ -9,3 +9,6 @@ dist/
 # Local working files: raw source photos, cert downloads, unpublished contact data
 /assets/
 src/raw-data.md
+
+# Impeccable design-tool state
+.impeccable/

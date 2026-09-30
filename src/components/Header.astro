@@ -1,10 +1,9 @@
 ---
+import Icon from './Icon.astro';
 import LangSwitch from './LangSwitch.astro';
-import SocialIcon from './SocialIcon.astro';
-import SocialLinks from './SocialLinks.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import { getLangFromUrl, useTranslations, localizePath } from '../i18n/utils';
-import { contact } from '../data/site';
+import { person } from '../data/site';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,44 +13,99 @@ const links = [
   { href: `${home}#about`, label: t('nav.about') },
   { href: `${home}#experience`, label: t('nav.experience') },
   { href: `${home}#projects`, label: t('nav.projects') },
-  { href: `${home}#certificates`, label: t('nav.certificates') },
   { href: `${home}#contact`, label: t('nav.contact') },
 ];
 ---
 
-<header class="sticky top-0 z-40 bg-bg/85 backdrop-blur-md">
-  <div class="shell flex h-14 items-center gap-8">
-    <a href={home} aria-label="Home" class="shrink-0">
-      <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-        <path d="M12 2 3 8v8l9 6 9-6V8z" />
-        <path d="M12 8v8" />
-      </svg>
+<header class="sticky top-0 z-40 bg-bg/90 backdrop-blur-md">
+  <div class="shell flex h-14 items-center gap-6">
+    <a href={home} class="shrink-0 text-sm font-medium tracking-tight">
+      <span class="sm:hidden">{person.shortName} W.</span>
+      <span class="hidden sm:inline">{person.name}</span>
     </a>
 
-    <nav class="hidden lg:block">
+    <nav class="ml-auto hidden lg:block" aria-label={t('nav.label')}>
       <ul class="flex items-center gap-6">
         {links.map(({ href, label }) => (
           <li>
-            <a href={href} class="text-sm text-muted transition-colors hover:text-fg">{label}</a>
+            <a
+              href={href}
+              data-nav-link
+              class="text-sm text-muted transition-colors hover:text-fg aria-[current=location]:text-fg aria-[current=location]:underline"
+            >{label}</a>
           </li>
         ))}
       </ul>
     </nav>
 
-    <div class="ml-auto flex items-center gap-3">
-      <div class="flex items-center gap-1">
-        <a
-          href={`mailto:${contact.email}`}
-          aria-label={t('nav.email')}
-          title={t('nav.email')}
-          class="flex items-center border border-rule p-1.5 text-muted transition-colors hover:text-fg"
-        >
-          <SocialIcon id="email" class="size-4" />
-        </a>
-        <SocialLinks variant="icons" />
-      </div>
+    <div class="ml-auto flex items-center gap-2 lg:ml-0">
       <LangSwitch />
       <ThemeToggle />
+
+      <details class="relative lg:hidden" data-menu>
+        <summary
+          class="flex size-9 cursor-pointer list-none items-center justify-center border border-rule text-muted transition-colors hover:text-fg [&::-webkit-details-marker]:hidden"
+          aria-label={t('nav.menu')}
+        >
+          <Icon id="menu" class="size-4" />
+        </summary>
+        <nav
+          aria-label={t('nav.label')}
+          class="absolute top-full right-0 mt-2 w-60 border border-fg bg-bg py-1"
+        >
+          <ul>
+            {links.map(({ href, label }) => (
+              <li>
+                <a
+                  href={href}
+                  data-nav-link
+                  class="block px-4 py-2.5 text-sm text-muted transition-colors hover:bg-shade hover:text-fg aria-[current=location]:text-fg"
+                >{label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </details>
     </div>
   </div>
 </header>
+
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('[data-menu]');
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+
+  // Close the mobile menu on pick, Escape, or a click outside it.
+  links.forEach((a) => a.addEventListener('click', () => menu?.removeAttribute('open')));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu?.open) {
+      menu.removeAttribute('open');
+      menu.querySelector('summary')?.focus();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (menu?.open && !menu.contains(e.target as Node)) menu.removeAttribute('open');
+  });
+
+  // Mark the section under the middle of the viewport as current.
+  const sections = [...new Set([...links].map((a) => a.hash.slice(1)))]
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null);
+  const setCurrent = (id: string | null) =>
+    links.forEach((a) =>
+      a.hash === `#${id}` ? a.setAttribute('aria-current', 'location') : a.removeAttribute('aria-current'),
+    );
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setCurrent(e.target.id);
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    );
+    sections.forEach((s) => io.observe(s));
+    // Nothing is current while the hero fills the view.
+    const hero = document.getElementById('hero-name');
+    if (hero) {
+      new IntersectionObserver(([e]) => e.isIntersecting && setCurrent(null)).observe(hero);
+    }
+  }
+</script>

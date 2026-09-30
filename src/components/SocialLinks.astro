@@ -1,14 +1,16 @@
 ---
+import Icon from './Icon.astro';
 import SocialIcon from './SocialIcon.astro';
 import { socials } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
-// icons: bare glyphs for the header. cards: full-width rows for the contact
-// section. inline: glyph plus name for the hero.
+// cards: full-width rows for the contact section. inline: glyph plus name for the hero.
 interface Props {
-  variant?: 'icons' | 'cards' | 'inline';
+  variant?: 'cards' | 'inline';
   class?: string;
 }
-const { variant = 'icons', class: className = '' } = Astro.props;
+const { variant = 'inline', class: className = '' } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
 {variant === 'cards' ? (
@@ -26,15 +28,16 @@ const { variant = 'icons', class: className = '' } = Astro.props;
             <span class="block text-base tracking-tight sm:text-lg">{s.name}</span>
             <span class="block truncate text-xs text-muted sm:text-sm">{s.handle}</span>
           </span>
-          <span
-            class="shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-fg"
-            aria-hidden="true"
-          >↗</span>
+          <Icon
+            id="arrow-up-right"
+            class="size-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-fg"
+          />
+          <span class="sr-only">{t('a11y.newTab')}</span>
         </a>
       </li>
     ))}
   </ul>
-) : variant === 'inline' ? (
+) : (
   <ul class:list={['flex items-center gap-5', className]}>
     {socials.map((s) => (
       <li>
@@ -42,27 +45,11 @@ const { variant = 'icons', class: className = '' } = Astro.props;
           href={s.href}
           target="_blank"
           rel="me noopener"
-          class="flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
+          class="flex h-9 items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
         >
           <SocialIcon id={s.id} class="size-4" />
           {s.name}
-        </a>
-      </li>
-    ))}
-  </ul>
-) : (
-  <ul class:list={['flex items-center gap-1', className]}>
-    {socials.map((s) => (
-      <li>
-        <a
-          href={s.href}
-          target="_blank"
-          rel="me noopener"
-          aria-label={s.name}
-          title={s.name}
-          class="flex items-center border border-rule p-1.5 text-muted transition-colors hover:text-fg"
-        >
-          <SocialIcon id={s.id} class="size-4" />
+          <span class="sr-only">{t('a11y.newTab')}</span>
         </a>
       </li>
     ))}

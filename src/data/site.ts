@@ -6,14 +6,21 @@ export type Localized = Record<Lang, string>;
 export const person = {
   name: 'Naphat Wattanarattanakul',
   shortName: 'Naphat',
+  /** Hero h1, one line per name. Soft hyphen breaks the surname on narrow screens. */
+  displayName: {
+    en: ['Naphat', 'Wattana­rattanakul'],
+    th: ['นภัทร', 'วัฒนรัตนกุล'],
+  } as Record<Lang, [string, string]>,
   email: 'naphat.watt2002@gmail.com',
   github: 'https://github.com/naphatwx',
   linkedin: 'https://www.linkedin.com/in/naphat-wattanarattanakul-6334b6295',
+  /** Set to a PDF path (e.g. '/cv.pdf' in public/) to show the CV button in the hero. */
+  cv: undefined as string | undefined,
 };
 
 export const contact = person;
 
-/** Ordered for display: header icons, contact cards and footer all read this. */
+/** Ordered for display: hero links and contact cards both read this. */
 export const socials = [
   {
     id: 'github' as const,
@@ -31,14 +38,9 @@ export const socials = [
 
 export type Social = (typeof socials)[number];
 
-export const stats: { value: string; label: Localized }[] = [
-  { value: '2', label: { en: 'Years building', th: 'ปีที่ทำงาน' } },
-  { value: '6', label: { en: 'Certificates earned', th: 'ใบรับรองที่ได้รับ' } },
-];
-
 export const aboutPoints: Localized[] = [
   {
-    en: 'Infrastructure software engineer. I build internal tools, deployment systems and developer infrastructure — the layer other engineers stand on.',
+    en: 'Infrastructure software engineer. I build internal tools, deployment systems and developer infrastructure: the layer other engineers stand on.',
     th: 'วิศวกรซอฟต์แวร์สายโครงสร้างพื้นฐาน ผมสร้างเครื่องมือภายใน ระบบดีพลอย และโครงสร้างสำหรับนักพัฒนา ซึ่งเป็นชั้นที่วิศวกรคนอื่นใช้ทำงานต่อ',
   },
   {
@@ -56,9 +58,9 @@ export const education = {
     en: 'King Mongkut University of Technology Thonburi (KMUTT)',
     th: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี',
   },
-  period: '2021 — 2025',
+  period: '2021–2025',
   degree: {
-    en: 'BSc Information Technology — School of Information Technology (SIT)',
+    en: 'BSc Information Technology, School of Information Technology (SIT)',
     th: 'วิทยาศาสตรบัณฑิต สาขาเทคโนโลยีสารสนเทศ คณะเทคโนโลยีสารสนเทศ (SIT)',
   },
 };
@@ -75,7 +77,7 @@ export type Role = {
 export const experience: Role[] = [
   {
     company: 'Ngernturbo',
-    period: { en: 'Jul 2025 — Present', th: 'ก.ค. 2568 — ปัจจุบัน' },
+    period: { en: 'Jul 2025 – Present', th: 'ก.ค. 2568 – ปัจจุบัน' },
     title: {
       en: 'Infrastructure Software Engineer',
       th: 'วิศวกรซอฟต์แวร์ (โครงสร้างพื้นฐาน)',
@@ -93,24 +95,10 @@ export const experience: Role[] = [
         },
       },
       {
-        label: { en: 'AI tooling', th: 'เครื่องมือสำหรับ AI' },
+        label: { en: 'Deploy platform', th: 'แพลตฟอร์มดีพลอย' },
         text: {
-          en: 'Exposed deployment infrastructure to AI agents as callable tools over the Model Context Protocol.',
-          th: 'เปิดให้เอเจนต์ AI เรียกใช้ระบบดีพลอยเป็นเครื่องมือ ผ่าน Model Context Protocol',
-        },
-      },
-      {
-        label: { en: 'Observability', th: 'การมองเห็นระบบ' },
-        text: {
-          en: 'Custom Jenkins pipeline plugins collecting run metrics, execution state, error messages and stack traces.',
-          th: 'ปลั๊กอิน Jenkins ที่เขียนขึ้นเอง เก็บค่าการทำงาน สถานะ ข้อความผิดพลาด และ stack trace ของไปป์ไลน์',
-        },
-      },
-      {
-        label: { en: 'CI/CD and quality', th: 'CI/CD และคุณภาพโค้ด' },
-        text: {
-          en: 'Deployment pipelines with automated SonarQube quality gates on every scan.',
-          th: 'ไปป์ไลน์ดีพลอยที่มีด่านตรวจคุณภาพโค้ดด้วย SonarQube ทำงานอัตโนมัติทุกครั้ง',
+          en: 'Built the internal deployment platform (see Projects): AI-callable MCP tools, Jenkins observability and SonarQube quality gates.',
+          th: 'สร้างแพลตฟอร์มดีพลอยภายใน (ดูในผลงาน) ทั้งเครื่องมือ MCP ให้ AI เรียกใช้ การมองเห็นไปป์ไลน์ Jenkins และด่านตรวจคุณภาพ SonarQube',
         },
       },
     ],
@@ -118,7 +106,7 @@ export const experience: Role[] = [
   },
   {
     company: 'iPassion',
-    period: { en: 'Jan 2024 — Jun 2024', th: 'ม.ค. — มิ.ย. 2567' },
+    period: { en: 'Jan – Jun 2024', th: 'ม.ค. – มิ.ย. 2567' },
     title: { en: 'Intern Developer', th: 'นักพัฒนา (ฝึกงาน)' },
     detail: {
       en: 'Built web applications on the OutSystems low-code platform for enterprise clients.',
@@ -151,15 +139,19 @@ export type Project = {
   summary: Localized;
   points: Localized[];
   stack: string[];
+  /** Repo or live demo. Rendered as a link on the title when set. */
+  href?: string;
+  /** Pipeline stages drawn as a flow diagram under the project. */
+  flow?: Localized[];
 };
 
 export const projects: Project[] = [
   {
     slug: 'internal-deployment-platform',
-    year: '2025 — 2026',
+    year: '2025–2026',
     title: { en: 'Internal deployment platform', th: 'แพลตฟอร์มดีพลอยภายใน' },
     summary: {
-      en: 'The platform engineers use to ship. Deployment, pipeline visibility and code quality gates in one place — callable by people and by AI agents.',
+      en: 'The platform engineers use to ship. Deployment, pipeline visibility and code quality gates in one place, callable by people and by AI agents.',
       th: 'แพลตฟอร์มที่วิศวกรใช้ส่งงานขึ้นระบบ รวมการดีพลอย การมองเห็นไปป์ไลน์ และด่านตรวจคุณภาพโค้ดไว้ที่เดียว เรียกใช้ได้ทั้งจากคนและเอเจนต์ AI',
     },
     points: [
@@ -177,6 +169,13 @@ export const projects: Project[] = [
       },
     ],
     stack: ['Go', 'Jenkins', 'SonarQube', 'Docker'],
+    flow: [
+      { en: 'Engineers and AI agents', th: 'วิศวกรและเอเจนต์ AI' },
+      { en: 'MCP tools', th: 'เครื่องมือ MCP' },
+      { en: 'Deploy backend', th: 'ระบบดีพลอย' },
+      { en: 'Jenkins pipeline, run metrics', th: 'ไปป์ไลน์ Jenkins และค่าการทำงาน' },
+      { en: 'SonarQube quality gate', th: 'ด่านคุณภาพ SonarQube' },
+    ],
   },
   {
     slug: 'finance-demo-trading',
@@ -207,7 +206,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'taxi-ads-cms',
-    year: '2024 — 2025',
+    year: '2024–2025',
     title: {
       en: 'Taxi ads CMS',
       th: 'ระบบจัดการโฆษณาบนแท็กซี่',
@@ -237,43 +236,23 @@ export const projects: Project[] = [
 export const skills: { group: Localized; items: string[] }[] = [
   {
     group: { en: 'Languages', th: 'ภาษา' },
-    items: ['Java', 'Go', 'JavaScript', 'TypeScript', 'SQL', 'HTML'],
+    items: ['Java', 'Go', 'TypeScript', 'JavaScript', 'SQL'],
   },
   {
-    group: { en: 'Backend', th: 'ระบบหลังบ้าน' },
-    items: ['Spring Boot', 'Go', 'Node.js', 'AdonisJS', 'gRPC'],
+    group: { en: 'Backend and APIs', th: 'ระบบหลังบ้านและ API' },
+    items: ['Spring Boot', 'Node.js', 'AdonisJS', 'gRPC', 'Postman', 'Apidog'],
   },
   {
     group: { en: 'Frontend', th: 'ระบบหน้าบ้าน' },
-    items: ['Vue.js', 'React', 'Next.js', 'Tailwind'],
+    items: ['React', 'Next.js', 'Vue.js', 'Tailwind', 'HTML'],
   },
   {
-    group: { en: 'Cloud', th: 'คลาวด์' },
-    items: ['AWS', 'Railway'],
+    group: { en: 'Data', th: 'ฐานข้อมูล' },
+    items: ['MySQL', 'PostgreSQL', 'MSSQL', 'InfluxDB', 'MongoDB'],
   },
   {
-    group: { en: 'Database', th: 'ฐานข้อมูล' },
-    items: ['MySQL', 'MSSQL', 'PostgreSQL', 'InfluxDB', 'MongoDB'],
-  },
-  {
-    group: { en: 'DevOps', th: 'DevOps' },
-    items: ['Docker', 'Nginx', 'Jenkins', 'SonarQube', 'OutSystems'],
-  },
-  {
-    group: { en: 'Monitoring and testing', th: 'การเฝ้าดูและทดสอบ' },
-    items: ['Grafana', 'Unit testing', 'Postman'],
-  },
-  {
-    group: { en: 'AI tools', th: 'เครื่องมือ AI' },
-    items: ['Custom MCP'],
-  },
-  {
-    group: { en: 'Version control', th: 'ระบบควบคุมเวอร์ชัน' },
-    items: ['GitHub', 'GitLab'],
-  },
-  {
-    group: { en: 'Management', th: 'การจัดการงาน' },
-    items: ['Jira', 'Notion', 'Apidog'],
+    group: { en: 'Platform and DevOps', th: 'แพลตฟอร์มและ DevOps' },
+    items: ['Docker', 'Nginx', 'Jenkins', 'SonarQube', 'Grafana', 'AWS', 'Railway', 'GitHub', 'GitLab', 'MCP servers'],
   },
 ];
 
@@ -293,7 +272,7 @@ export const certificates: Certificate[] = [
     slug: 'toeic-2025',
     issuer: 'ETS',
     year: '2025',
-    title: { en: 'TOEIC Listening & Reading Score 680', th: 'TOEIC การฟังและการอ่าน คะเเนน 680' },
+    title: { en: 'TOEIC Listening & Reading Score 680', th: 'TOEIC การฟังและการอ่าน คะแนน 680' },
     short: 'TOEIC',
   },
   {

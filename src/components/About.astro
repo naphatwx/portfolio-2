@@ -1,4 +1,6 @@
 ---
+import Certificates from './Certificates.astro';
+import Section from './Section.astro';
 import { aboutPoints, education, skills } from '../data/site';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
@@ -6,46 +8,33 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section id="about" class="scroll-mt-14 border-b border-rule">
-  <div class="shell py-12 sm:py-16">
-    <p class="label reveal mb-4">{t('about.eyebrow')}</p>
-
-    <div class="grid gap-8 lg:grid-cols-[1fr_minmax(0,22rem)]">
-      <div>
-        <h2 class="reveal max-w-2xl text-2xl leading-snug tracking-tight sm:text-3xl">
-          {t('about.lead')}
-        </h2>
-
-        <ul class="mt-6 max-w-xl space-y-3">
-          {aboutPoints.map((point, i) => (
-            <li class="reveal flex gap-4">
-              <span class="label shrink-0 pt-1">0{i + 1}</span>
-              <p class="text-sm text-muted">{point[lang]}</p>
-            </li>
-          ))}
-        </ul>
+<Section id="about" title={t('about.title')}>
+  <div class="grid gap-12 lg:grid-cols-[1fr_minmax(0,19rem)]">
+    <div>
+      <p class="max-w-2xl text-xl leading-snug tracking-tight sm:text-2xl">{t('about.lead')}</p>
+      <div class="mt-5 max-w-xl space-y-3 text-sm text-muted">
+        {aboutPoints.map((point) => <p>{point[lang]}</p>)}
       </div>
 
-      <!-- Only boxed element on the page: the degree earns the emphasis. -->
-      <div class="reveal self-start border border-rule bg-shade p-5">
-        <p class="label">{t('about.education')}</p>
-        <p class="mt-2 text-lg leading-snug tracking-tight">{education.schoolFull[lang]}</p>
-        <p class="mt-2 text-sm text-muted">{education.degree[lang]}</p>
-        <p class="label mt-2">{education.period}</p>
-      </div>
-    </div>
-
-    <!-- Full width below the grid: wide rows keep the stack short. -->
-    <div class="reveal mt-10">
-      <h3 class="label mb-3">{t('skills.title')}</h3>
-      <dl class="grid border-t border-rule sm:grid-cols-2 lg:grid-cols-3">
+      <h3 class="mt-12 mb-3 text-base font-medium tracking-tight">{t('skills.title')}</h3>
+      <dl class="border-t border-rule">
         {skills.map((group) => (
-          <div class="border-b border-rule py-2.5 sm:pr-8">
-            <dt class="label">{group.group[lang]}</dt>
-            <dd class="mt-1 text-sm">{group.items.join(' · ')}</dd>
+          <div class="grid gap-1 border-b border-rule py-3 sm:grid-cols-[11rem_1fr] sm:gap-6">
+            <dt class="label sm:pt-1">{group.group[lang]}</dt>
+            <dd class="text-sm">{group.items.join(' · ')}</dd>
           </div>
         ))}
       </dl>
     </div>
+
+    <aside class="space-y-10 self-start">
+      <div class="border border-rule bg-shade p-5">
+        <h3 class="label">{t('about.education')}</h3>
+        <p class="mt-2 text-lg leading-snug tracking-tight">{education.schoolFull[lang]}</p>
+        <p class="mt-2 text-sm text-muted">{education.degree[lang]}</p>
+        <p class="label mt-2">{education.period}</p>
+      </div>
+      <Certificates />
+    </aside>
   </div>
-</section>
+</Section>

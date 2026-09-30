@@ -1,37 +1,74 @@
 ---
+import Icon from './Icon.astro';
 import SocialLinks from './SocialLinks.astro';
 import { contact } from '../data/site';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const [emailUser, emailDomain] = contact.email.split('@');
 ---
 
-<section id="contact" class="scroll-mt-14 border-b border-rule">
-  <div class="shell py-14 sm:py-20">
-    <h2 class="reveal mx-auto max-w-3xl text-center text-3xl leading-tight tracking-tight sm:text-4xl">
-      {t('cta.title')}
-    </h2>
-    <p class="reveal mx-auto mt-4 max-w-md text-center text-sm text-muted">{t('cta.body')}</p>
+<section id="contact" class="scroll-mt-14 border-b border-rule" aria-labelledby="contact-title">
+  <div class="shell py-16 sm:py-24">
+    <h2 id="contact-title" class="section-title mx-auto max-w-3xl text-center">{t('cta.title')}</h2>
+    <p class="mx-auto mt-4 max-w-md text-center text-sm text-muted">{t('cta.body')}</p>
 
-    <div class="reveal mx-auto mt-10 max-w-2xl">
-      <a
-        href={`mailto:${contact.email}`}
-        class="group flex items-center gap-4 border border-fg bg-fg p-4 text-bg transition-opacity hover:opacity-85 sm:p-5"
-      >
-        <svg class="size-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-          <rect x="2.5" y="4.5" width="19" height="15" />
-          <path d="m2.5 6 9.5 7 9.5-7" />
-        </svg>
-        <span class="min-w-0 flex-1">
-          <span class="label text-bg/70">{t('cta.emailLabel')}</span>
-          <span class="mt-0.5 block truncate text-base tracking-tight sm:text-xl">{contact.email}</span>
-        </span>
-        <span class="shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true">↗</span>
-      </a>
+    <div class="mx-auto mt-10 max-w-2xl">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-stretch">
+        <a
+          href={`mailto:${contact.email}`}
+          class="group flex min-w-0 flex-1 items-center gap-4 bg-accent p-4 text-on-accent transition-opacity hover:opacity-90 sm:p-5"
+        >
+          <Icon id="mail" class="hidden size-6 shrink-0 sm:block" />
+          <span class="min-w-0 flex-1">
+            <span class="label block text-on-accent opacity-85">{t('cta.emailLabel')}</span>
+            <span class="mt-0.5 block text-sm tracking-tight sm:text-xl">
+              {emailUser}<wbr />@{emailDomain}
+            </span>
+          </span>
+          <Icon id="arrow-up-right" class="size-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </a>
+        <button
+          type="button"
+          hidden
+          data-copy={contact.email}
+          aria-label={t('cta.copyLabel')}
+          class="flex h-9 shrink-0 items-center justify-center gap-2 border border-rule px-3 text-xs text-muted transition-colors hover:border-fg hover:text-fg sm:h-auto sm:flex-col sm:gap-1 sm:px-4"
+        >
+          <Icon id="copy" class="size-4 sm:size-5" />
+          <span data-copy-text data-idle={t('cta.copy')} data-done={t('cta.copied')}>{t('cta.copy')}</span>
+        </button>
+      </div>
+      <p class="sr-only" aria-live="polite" data-copy-status data-msg={t('cta.copiedStatus')}></p>
 
-      <p class="label mt-8 text-center">{t('social.elsewhere')}</p>
+      <p class="mt-10 text-center text-sm text-muted">{t('social.elsewhere')}</p>
       <SocialLinks variant="cards" class="mt-3" />
     </div>
   </div>
 </section>
+
+<script>
+  // Copy is a fallback for visitors without a mail client. Hidden until JS can run it.
+  const btn = document.querySelector<HTMLButtonElement>('[data-copy]');
+  const text = btn?.querySelector<HTMLElement>('[data-copy-text]');
+  const status = document.querySelector<HTMLElement>('[data-copy-status]');
+  if (btn && text && navigator.clipboard) {
+    btn.hidden = false;
+    let timer: number | undefined;
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+      } catch {
+        return;
+      }
+      text.textContent = text.dataset.done ?? '';
+      if (status) status.textContent = status.dataset.msg ?? '';
+      clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        text.textContent = text.dataset.idle ?? '';
+        if (status) status.textContent = '';
+      }, 2000);
+    });
+  }
+</script>

@@ -15,13 +15,13 @@ const { title = t('meta.title'), description = t('meta.description') } = Astro.p
 const alternates = getAlternates(Astro.url);
 const origin = Astro.site ?? Astro.url.origin;
 const canonical = new URL(Astro.url.pathname, origin);
+const ogImage = new URL('/og.png', origin);
 ---
 
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light dark" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -34,28 +34,36 @@ const canonical = new URL(Astro.url.pathname, origin);
     <link rel="alternate" hreflang="x-default" href={new URL('/', origin)} />
 
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={lang === 'th' ? 'th_TH' : 'en_US'} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={t('meta.ogAlt')} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Inter for Latin, Anuphan for Thai. One request covers both. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Anuphan:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Anuphan:wght@400;500&display=swap"
     />
 
     <!-- Inline and blocking: applies the theme before first paint, no flash. -->
     <script is:inline>
       // Light is the design default; the OS preference is deliberately ignored.
-      // Only an explicit toggle choice switches to dark.
-      document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
+      // Only an explicit toggle choice switches to dark. Storage may be blocked.
+      try {
+        document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
+      } catch {}
     </script>
   </head>
 
-  <body class="antialiased">
+  <body id="top" class="antialiased">
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-fg focus:px-4 focus:py-2 focus:text-bg"
@@ -66,26 +74,5 @@ const canonical = new URL(Astro.url.pathname, origin);
     <Header />
     <main id="main"><slot /></main>
     <Footer />
-
-    <script>
-      // Reveal on scroll. Elements start visible if IO is unavailable.
-      const items = document.querySelectorAll<HTMLElement>('.reveal');
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            for (const e of entries) {
-              if (e.isIntersecting) {
-                e.target.classList.add('is-in');
-                io.unobserve(e.target);
-              }
-            }
-          },
-          { rootMargin: '0px 0px -10% 0px' },
-        );
-        items.forEach((el) => io.observe(el));
-      } else {
-        items.forEach((el) => el.classList.add('is-in'));
-      }
-    </script>
   </body>
 </html>
