@@ -20,7 +20,7 @@ export const ui = {
     'nav.contact': 'Contact',
     'nav.skipToContent': 'Skip to content',
 
-    'hero.headline': 'I build backend systems that stay boring under load.',
+    'hero.headline': 'I build platforms for engineers and the AI agents working beside them.',
     'hero.roleAt': '{role} at {company}',
     'hero.location': 'Bangkok, Thailand',
     'hero.emailMe': 'Email me',
@@ -28,7 +28,6 @@ export const ui = {
     'hero.portraitAlt': 'Portrait of Naphat Wattanarattanakul',
 
     'about.title': 'About',
-    'about.lead': 'I build the platforms other engineers ship on.',
     'about.education': 'Education',
     'skills.title': 'Stack',
     'certs.title': 'Certificates',
@@ -68,7 +67,7 @@ export const ui = {
     'nav.contact': 'ติดต่อ',
     'nav.skipToContent': 'ข้ามไปที่เนื้อหา',
 
-    'hero.headline': 'ผมสร้างระบบหลังบ้านที่ทำงานนิ่ง ๆ แม้โหลดหนัก',
+    'hero.headline': 'ผมสร้างแพลตฟอร์มให้วิศวกร และเอเจนต์ AI ที่ทำงานเคียงข้างพวกเขา',
     'hero.roleAt': '{role} ที่ {company}',
     'hero.location': 'กรุงเทพฯ ประเทศไทย',
     'hero.emailMe': 'ส่งอีเมลหาผม',
@@ -76,7 +75,6 @@ export const ui = {
     'hero.portraitAlt': 'ภาพถ่ายของนภัทร วัฒนรัตนกุล',
 
     'about.title': 'เกี่ยวกับผม',
-    'about.lead': 'ผมสร้างแพลตฟอร์มที่วิศวกรคนอื่นใช้ส่งงานขึ้นระบบ',
     'about.education': 'การศึกษา',
     'skills.title': 'เทคโนโลยีที่ใช้',
     'certs.title': 'ใบรับรอง',

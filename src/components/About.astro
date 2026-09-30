@@ -11,9 +11,10 @@ const t = useTranslations(lang);
 <Section id="about" title={t('about.title')}>
   <div class="grid gap-12 lg:grid-cols-[1fr_minmax(0,19rem)]">
     <div>
-      <p class="max-w-2xl text-xl leading-snug tracking-tight sm:text-2xl">{t('about.lead')}</p>
-      <div class="mt-5 max-w-xl space-y-3 text-sm text-muted">
-        {aboutPoints.map((point) => <p>{point[lang]}</p>)}
+      <div class="max-w-xl space-y-3 text-sm text-muted">
+        {aboutPoints.map((point, i) => (
+          <p class:list={[i === 0 && 'text-base text-fg sm:text-lg']}>{point[lang]}</p>
+        ))}
       </div>
 
       <h3 class="mt-12 mb-3 text-base font-medium tracking-tight">{t('skills.title')}</h3>
