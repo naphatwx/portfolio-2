@@ -1,14 +1,14 @@
 ---
 import type { ImageMetadata } from 'astro';
-import { getImage } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
+import Section from './Section.astro';
 import { certificates } from '../data/site';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Matched to certificates[].slug by filename. Thumbnails were unreadable, so
-// each title links to the full-size scan instead.
+// Matched to certificates[].slug by filename.
 const files = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/certificates/*.{jpg,jpeg,png,webp}',
   { eager: true },
@@ -23,23 +23,106 @@ const items = await Promise.all(
   certificates.map(async (cert) => {
     const img = bySlug.get(cert.slug);
     const full = img ? await getImage({ src: img, width: Math.min(img.width, 1600), format: 'webp' }) : null;
-    return { ...cert, href: full?.src };
+    return { cert, img, full: full?.src, alt: `${cert.title[lang]} — ${cert.issuer}` };
   }),
 );
+const firstFull = items.find((i) => i.full)?.full;
 ---
 
-<div>
-  <h3 class="text-base font-medium tracking-tight">{t('certs.title')}</h3>
-  <ul class="mt-3 border-t border-rule">
-    {items.map((cert) => (
-      <li class="border-b border-rule py-2.5">
-        {cert.href ? (
-          <a href={cert.href} class="text-sm hover:underline">{cert.title[lang]}</a>
+<Section id="certificates" title={t('certs.title')}>
+  <ul class="grid gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+    {items.map(({ cert, img, full, alt }) => (
+      <li>
+        {img && full ? (
+          <button
+            type="button"
+            class="cert-open group block w-full cursor-zoom-in overflow-hidden border border-rule bg-shade"
+            data-full={full}
+            data-alt={alt}
+            aria-label={`${t('certs.view')}: ${cert.title[lang]}`}
+          >
+            <Image
+              src={img}
+              alt={alt}
+              widths={[480, 960]}
+              sizes="(min-width: 1024px) 19rem, (min-width: 640px) 45vw, 90vw"
+              class="aspect-[1.414] w-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-[1.025]"
+              loading="lazy"
+            />
+          </button>
         ) : (
-          <span class="text-sm">{cert.title[lang]}</span>
+          /* No image (TOEIC report shows personal data): type-only tile keeps the grid even. */
+          <div class="flex aspect-[1.414] w-full items-center justify-center border border-rule bg-shade">
+            <p class="text-3xl font-medium tracking-tight text-muted">{cert.short ?? cert.issuer}</p>
+          </div>
         )}
+        <h3 class="mt-2.5 text-sm font-medium tracking-tight">{cert.title[lang]}</h3>
         <p class="label mt-0.5">{cert.issuer} · {cert.year}</p>
       </li>
     ))}
   </ul>
-</div>
+
+  <dialog id="cert-viewer" class="cert-viewer m-auto max-h-[92vh] max-w-[min(92vw,64rem)] bg-transparent p-0">
+    <figure class="relative">
+      <img src={firstFull} alt="" loading="lazy" class="max-h-[88vh] w-auto border border-rule bg-bg object-contain" />
+      <button
+        type="button"
+        class="cert-close absolute top-2 right-2 flex items-center border border-rule bg-bg p-1.5 text-muted transition-colors hover:text-fg"
+        aria-label={t('certs.close')}
+      >
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M5 5l14 14M19 5 5 19" />
+        </svg>
+      </button>
+    </figure>
+  </dialog>
+</Section>
+
+<style>
+  .cert-viewer {
+    opacity: 0;
+    transform: scale(0.97);
+    transition:
+      opacity 260ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+      overlay 260ms allow-discrete,
+      display 260ms allow-discrete;
+  }
+  .cert-viewer[open] {
+    opacity: 1;
+    transform: none;
+  }
+  @starting-style {
+    .cert-viewer[open] {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+  }
+  .cert-viewer::backdrop {
+    background: rgb(0 0 0 / 0.72);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cert-viewer {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#cert-viewer');
+  const img = dialog?.querySelector('img');
+  if (dialog && img) {
+    document.querySelectorAll<HTMLButtonElement>('.cert-open').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        img.src = btn.dataset.full!;
+        img.alt = btn.dataset.alt!;
+        dialog.showModal();
+      });
+    });
+    dialog.querySelector('.cert-close')?.addEventListener('click', () => dialog.close());
+    // A click on the dialog box itself (outside the figure) is a backdrop click.
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+</script>

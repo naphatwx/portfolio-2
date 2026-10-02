@@ -10,7 +10,7 @@ const t = useTranslations(lang);
 <Section id="experience" title={t('exp.title')}>
   <ol>
     {experience.map((role, i) => (
-      <li class="grid gap-4 border-t border-rule py-7 lg:grid-cols-[18rem_1fr] lg:gap-10">
+      <li class="grid gap-4 border-t border-rule py-5 lg:grid-cols-[18rem_1fr] lg:gap-10">
         <div class="lg:sticky lg:top-20 lg:self-start">
           <h3 class="text-lg font-medium tracking-tight sm:text-xl">{role.company}</h3>
           <p class="mt-1 text-sm">{role.title[lang]}</p>
@@ -31,7 +31,7 @@ const t = useTranslations(lang);
 
           <dl class="mt-4">
             {role.points.map((point) => (
-              <div class="grid gap-1 border-t border-rule py-3 sm:grid-cols-[11rem_1fr] sm:gap-6">
+              <div class="grid gap-1 border-t border-rule py-2.5 sm:grid-cols-[11rem_1fr] sm:gap-6">
                 <dt class="label sm:pt-1">{point.label[lang]}</dt>
                 <dd class="text-sm text-muted">{point.text[lang]}</dd>
               </div>

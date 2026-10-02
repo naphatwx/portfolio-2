@@ -13,18 +13,18 @@ const current = experience[0];
 
 <section class="border-b border-rule" aria-labelledby="hero-name">
   <div class="shell grid items-end gap-x-10 lg:grid-cols-[1fr_minmax(0,19rem)]">
-    <div class="py-12 sm:py-16 lg:py-24">
+    <div class="py-10 sm:py-12 lg:py-16">
       <h1 id="hero-name" class="display">
         {person.displayName[lang].map((part) => <span class="block">{part}</span>)}
       </h1>
-      <p class="mt-6 max-w-xl text-xl leading-snug tracking-tight sm:text-2xl">{t('hero.headline')}</p>
+      <p class="mt-5 max-w-xl text-xl leading-snug tracking-tight sm:text-2xl">{t('hero.headline')}</p>
 
       <p class="mt-4 text-sm text-muted">
         <span class="mr-2 inline-block size-1.5 rounded-full bg-accent align-middle" aria-hidden="true"></span>
         {t('hero.roleAt', { role: current.title[lang], company: current.company })} · {t('hero.location')}
       </p>
 
-      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+      <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
         <div class="flex flex-wrap gap-2">
           <a
             href={`mailto:${person.email}`}

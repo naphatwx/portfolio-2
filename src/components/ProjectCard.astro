@@ -12,7 +12,7 @@ const { project, lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<article class="grid gap-3 border-t border-rule py-7 lg:grid-cols-[7rem_1fr] lg:gap-10">
+<article class="grid gap-3 border-t border-rule py-5 lg:grid-cols-[7rem_1fr] lg:gap-10">
   <p class="label lg:pt-2">{project.year}</p>
 
   <div>
@@ -37,7 +37,7 @@ const t = useTranslations(lang);
     </ul>
 
     {project.flow && (
-      <figure class="mt-7">
+      <figure class="mt-5">
         <ol class="flow grid gap-2 sm:grid-cols-5" data-flow aria-label={t('projects.flowLabel')}>
           {project.flow.map((stage, i) => (
             <li

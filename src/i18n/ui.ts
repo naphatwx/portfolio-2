@@ -17,6 +17,7 @@ export const ui = {
     'nav.about': 'About',
     'nav.experience': 'Experience',
     'nav.projects': 'Projects',
+    'nav.certificates': 'Certificates',
     'nav.contact': 'Contact',
     'nav.skipToContent': 'Skip to content',
 
@@ -31,6 +32,8 @@ export const ui = {
     'about.education': 'Education',
     'skills.title': 'Stack',
     'certs.title': 'Certificates',
+    'certs.view': 'View certificate',
+    'certs.close': 'Close',
 
     'exp.title': 'Experience',
 
@@ -64,6 +67,7 @@ export const ui = {
     'nav.about': 'เกี่ยวกับ',
     'nav.experience': 'ประสบการณ์',
     'nav.projects': 'ผลงาน',
+    'nav.certificates': 'ใบรับรอง',
     'nav.contact': 'ติดต่อ',
     'nav.skipToContent': 'ข้ามไปที่เนื้อหา',
 
@@ -78,6 +82,8 @@ export const ui = {
     'about.education': 'การศึกษา',
     'skills.title': 'เทคโนโลยีที่ใช้',
     'certs.title': 'ใบรับรอง',
+    'certs.view': 'ดูใบรับรอง',
+    'certs.close': 'ปิด',
 
     'exp.title': 'ประสบการณ์',
 

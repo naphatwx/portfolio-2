@@ -1,5 +1,4 @@
 ---
-import Certificates from './Certificates.astro';
 import Section from './Section.astro';
 import { aboutPoints, education, skills } from '../data/site';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
@@ -9,7 +8,7 @@ const t = useTranslations(lang);
 ---
 
 <Section id="about" title={t('about.title')}>
-  <div class="grid gap-12 lg:grid-cols-[1fr_minmax(0,19rem)]">
+  <div class="grid gap-8 lg:grid-cols-[1fr_minmax(0,19rem)]">
     <div>
       <div class="max-w-xl space-y-3 text-sm text-muted">
         {aboutPoints.map((point, i) => (
@@ -17,10 +16,10 @@ const t = useTranslations(lang);
         ))}
       </div>
 
-      <h3 class="mt-12 mb-3 text-base font-medium tracking-tight">{t('skills.title')}</h3>
+      <h3 class="mt-8 mb-3 text-base font-medium tracking-tight">{t('skills.title')}</h3>
       <dl class="border-t border-rule">
         {skills.map((group) => (
-          <div class="grid gap-1 border-b border-rule py-3 sm:grid-cols-[11rem_1fr] sm:gap-6">
+          <div class="grid gap-1 border-b border-rule py-2.5 sm:grid-cols-[11rem_1fr] sm:gap-6">
             <dt class="label sm:pt-1">{group.group[lang]}</dt>
             <dd class="text-sm">{group.items.join(' · ')}</dd>
           </div>
@@ -28,14 +27,13 @@ const t = useTranslations(lang);
       </dl>
     </div>
 
-    <aside class="space-y-10 self-start">
+    <aside class="self-start">
       <div class="border border-rule bg-shade p-5">
         <h3 class="label">{t('about.education')}</h3>
         <p class="mt-2 text-lg leading-snug tracking-tight">{education.schoolFull[lang]}</p>
         <p class="mt-2 text-sm text-muted">{education.degree[lang]}</p>
         <p class="label mt-2">{education.period}</p>
       </div>
-      <Certificates />
     </aside>
   </div>
 </Section>
