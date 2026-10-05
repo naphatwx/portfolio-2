@@ -281,7 +281,7 @@ export const skills: { group: Localized; items: string[] }[] = [
   },
   {
     group: { en: 'AI tooling', th: 'เครื่องมือ AI' },
-    items: ['MCP servers', 'Claude Code'],
+    items: ['MCP servers', 'Claude Code', 'Kiro', 'Roo Code'],
   },
 ];
 
