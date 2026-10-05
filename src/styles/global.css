@@ -80,6 +80,17 @@
     text-underline-offset: 0.22em;
     text-decoration-thickness: 1px;
   }
+  /* Tailwind v4 preflight resets buttons to cursor: default. */
+  a[href],
+  button:not(:disabled),
+  summary,
+  label[for],
+  select,
+  [role="button"],
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: pointer;
+  }
   ::selection {
     background: var(--accent);
     color: var(--on-accent);
