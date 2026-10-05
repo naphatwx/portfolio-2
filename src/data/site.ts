@@ -14,8 +14,8 @@ export const person = {
   email: 'naphat.watt2002@gmail.com',
   github: 'https://github.com/naphatwx',
   linkedin: 'https://www.linkedin.com/in/naphat-wattanarattanakul-6334b6295',
-  /** Set to a PDF path (e.g. '/cv.pdf' in public/) to show the CV button in the hero. */
-  cv: undefined as string | undefined,
+  /** CV PDFs in public/, built by `npm run cv`. Unset to hide the hero CV button. */
+  cv: { en: '/cv.pdf', th: '/cv-th.pdf' } as Localized | undefined,
 };
 
 export const contact = person;
@@ -83,26 +83,47 @@ export const experience: Role[] = [
       th: 'วิศวกรซอฟต์แวร์ (โครงสร้างพื้นฐาน)',
     },
     detail: {
-      en: 'Building self-service platforms that remove infrastructure bottlenecks, so product teams can ship without waiting on us.',
-      th: 'สร้างแพลตฟอร์มแบบบริการตัวเอง เพื่อลดคอขวดด้านโครงสร้างพื้นฐาน ให้ทีมผลิตภัณฑ์ส่งงานได้เองโดยไม่ต้องรอ',
+      en: 'Building the self-service deployment and infrastructure platform that product teams use to ship, without waiting on the infra team.',
+      th: 'สร้างแพลตฟอร์มดีพลอยและโครงสร้างพื้นฐานแบบบริการตัวเอง ที่ทีมผลิตภัณฑ์ใช้ส่งงานขึ้นระบบได้เองโดยไม่ต้องรอทีมโครงสร้างพื้นฐาน',
     },
     points: [
       {
-        label: { en: 'Dev autonomy', th: 'ให้นักพัฒนาทำงานได้เอง' },
+        label: { en: 'Deploy workflow', th: 'ขั้นตอนการดีพลอย' },
         text: {
-          en: 'A web-based bucket management system that lets developers provision and manage their own cloud resources.',
-          th: 'ระบบจัดการ bucket บนเว็บ ให้นักพัฒนาสร้างและดูแลทรัพยากรคลาวด์ของตัวเองได้',
+          en: 'End-to-end deployment tickets: a multi-step release wizard linked to Jira and Fast-ship, plus redeploys to production that only certain roles can run.',
+          th: 'ทิกเก็ตดีพลอยครบวงจร ตั้งแต่หน้าจอสร้าง release หลายขั้นตอนที่เชื่อมกับ Jira และ Fast-ship ไปจนถึงการ redeploy ขึ้น production ที่จำกัดสิทธิ์ตามบทบาท',
         },
       },
       {
-        label: { en: 'Deploy platform', th: 'แพลตฟอร์มดีพลอย' },
+        label: { en: 'Self-service storage', th: 'จัดการ storage ได้เอง' },
         text: {
-          en: 'Built the internal deployment platform (see Projects): AI-callable MCP tools, Jenkins observability and SonarQube quality gates.',
-          th: 'สร้างแพลตฟอร์มดีพลอยภายใน (ดูในผลงาน) ทั้งเครื่องมือ MCP ให้ AI เรียกใช้ การมองเห็นไปป์ไลน์ Jenkins และด่านตรวจคุณภาพ SonarQube',
+          en: 'Developers request S3 buckets from the web UI, and Jenkins and Terragrunt provision them with versioning and lifecycle rules. Existing buckets can be brought under the same management.',
+          th: 'นักพัฒนาขอสร้าง S3 bucket ผ่านหน้าเว็บได้เอง โดย Jenkins และ Terragrunt สร้างให้พร้อม versioning และ lifecycle rule และนำ bucket เดิมเข้ามาจัดการในระบบเดียวกันได้',
+        },
+      },
+      {
+        label: { en: 'CI at scale', th: 'CI ทั้งองค์กร' },
+        text: {
+          en: 'A SonarQube quality gate across CI, including .NET; deployment manifests generated automatically for older Go, Python, C# and JS repos; and a move of old Jenkins jobs to the new flow that can be undone.',
+          th: 'ด่านตรวจคุณภาพ SonarQube ทั่วทั้ง CI รวมถึง .NET, สร้าง deployment manifest อัตโนมัติให้ repo เก่าที่เขียนด้วย Go, Python, C# และ JS และย้าย Jenkins job เก่าไปใช้ flow ใหม่โดยย้อนกลับได้',
+        },
+      },
+      {
+        label: { en: 'AI-ready platform', th: 'แพลตฟอร์มพร้อมใช้กับ AI' },
+        text: {
+          en: "An MCP gateway that lets AI agents use platform actions, limited by the user's role, plus Claude Code skills for the infra team.",
+          th: 'MCP gateway ที่ให้เอเจนต์ AI เรียกใช้งานแพลตฟอร์มได้ตามสิทธิ์ของผู้ใช้ พร้อม Claude Code skill สำหรับทีมโครงสร้างพื้นฐาน',
+        },
+      },
+      {
+        label: { en: 'Access control', th: 'ควบคุมสิทธิ์' },
+        text: {
+          en: 'Role-based permissions, whitelist approval tickets, and scheduled branch freezes.',
+          th: 'สิทธิ์การใช้งานตามบทบาท ทิกเก็ตอนุมัติ whitelist และการตั้งเวลา freeze branch',
         },
       },
     ],
-    tags: ['Platform', 'DevOps', 'Jenkins'],
+    tags: ['Go', 'Next.js', 'Jenkins', 'Terraform', 'AWS'],
   },
   {
     company: 'iPassion',
@@ -151,30 +172,30 @@ export const projects: Project[] = [
     year: '2025–2026',
     title: { en: 'Internal deployment platform', th: 'แพลตฟอร์มดีพลอยภายใน' },
     summary: {
-      en: 'The platform engineers use to ship. Deployment, pipeline visibility and code quality gates in one place, callable by people and by AI agents.',
-      th: 'แพลตฟอร์มที่วิศวกรใช้ส่งงานขึ้นระบบ รวมการดีพลอย การมองเห็นไปป์ไลน์ และด่านตรวจคุณภาพโค้ดไว้ที่เดียว เรียกใช้ได้ทั้งจากคนและเอเจนต์ AI',
+      en: 'The platform engineers use to ship. A Next.js web app and AI agents call a Go gRPC backend; a NestJS worker and RabbitMQ hand work to Jenkins, which provisions AWS through Terragrunt.',
+      th: 'แพลตฟอร์มที่วิศวกรใช้ส่งงานขึ้นระบบ เว็บ Next.js และเอเจนต์ AI เรียก backend Go ผ่าน gRPC แล้ว worker NestJS กับ RabbitMQ ส่งงานต่อให้ Jenkins ซึ่งสร้างทรัพยากร AWS ผ่าน Terragrunt',
     },
     points: [
       {
-        en: 'MCP integration exposing the deployment backend as AI-accessible tools',
-        th: 'เชื่อม MCP เพื่อเปิดให้ AI เรียกใช้ระบบดีพลอยเป็นเครื่องมือ',
+        en: 'Go gRPC backend with a REST gateway, shared by the web app and the MCP tools',
+        th: 'backend Go แบบ gRPC พร้อม REST gateway ใช้ร่วมกันทั้งเว็บและเครื่องมือ MCP',
       },
       {
-        en: 'Jenkins pipeline plugin collecting duration, result, error message and stack trace',
-        th: 'ปลั๊กอิน Jenkins เก็บระยะเวลา ผลลัพธ์ ข้อความผิดพลาด และ stack trace',
+        en: 'Event-driven jobs: RabbitMQ messages trigger Jenkins pipelines, which report status back to the platform',
+        th: 'งานแบบ event-driven ข้อความผ่าน RabbitMQ สั่งงานไปป์ไลน์ Jenkins แล้วรายงานสถานะกลับมาที่แพลตฟอร์ม',
       },
       {
-        en: 'SonarQube pipeline script automating code quality scans',
-        th: 'สคริปต์ SonarQube สำหรับตรวจคุณภาพโค้ดอัตโนมัติ',
+        en: 'Infrastructure as code: Terragrunt units generated per request across multiple AWS accounts',
+        th: 'โครงสร้างพื้นฐานแบบโค้ด สร้าง Terragrunt unit ตามคำขอ รองรับหลายบัญชี AWS',
       },
     ],
-    stack: ['Go', 'Jenkins', 'SonarQube', 'Docker'],
+    stack: ['Go', 'gRPC', 'Next.js', 'NestJS', 'Terragrunt', 'AWS'],
     flow: [
-      { en: 'Engineers and AI agents', th: 'วิศวกรและเอเจนต์ AI' },
-      { en: 'MCP tools', th: 'เครื่องมือ MCP' },
-      { en: 'Deploy backend', th: 'ระบบดีพลอย' },
-      { en: 'Jenkins pipeline, run metrics', th: 'ไปป์ไลน์ Jenkins และค่าการทำงาน' },
-      { en: 'SonarQube quality gate', th: 'ด่านคุณภาพ SonarQube' },
+      { en: 'Web app and AI agents (MCP)', th: 'เว็บและเอเจนต์ AI (MCP)' },
+      { en: 'Go gRPC backend', th: 'backend Go แบบ gRPC' },
+      { en: 'NestJS worker, RabbitMQ', th: 'worker NestJS และ RabbitMQ' },
+      { en: 'Jenkins pipelines', th: 'ไปป์ไลน์ Jenkins' },
+      { en: 'AWS via Terragrunt', th: 'AWS ผ่าน Terragrunt' },
     ],
   },
   {
@@ -236,23 +257,31 @@ export const projects: Project[] = [
 export const skills: { group: Localized; items: string[] }[] = [
   {
     group: { en: 'Languages', th: 'ภาษา' },
-    items: ['Java', 'Go', 'TypeScript', 'JavaScript', 'SQL'],
+    items: ['Go', 'TypeScript', 'Java', 'JavaScript', 'SQL'],
   },
   {
     group: { en: 'Backend and APIs', th: 'ระบบหลังบ้านและ API' },
-    items: ['Spring Boot', 'Node.js', 'AdonisJS', 'gRPC', 'Postman', 'Apidog'],
+    items: ['gRPC', 'Protobuf', 'Spring Boot', 'Node.js', 'NestJS', 'AdonisJS'],
   },
   {
     group: { en: 'Frontend', th: 'ระบบหน้าบ้าน' },
-    items: ['React', 'Next.js', 'Vue.js', 'Tailwind', 'HTML'],
+    items: ['React', 'Next.js', 'Vue.js', 'Tailwind'],
   },
   {
-    group: { en: 'Data', th: 'ฐานข้อมูล' },
-    items: ['MySQL', 'PostgreSQL', 'MSSQL', 'InfluxDB', 'MongoDB'],
+    group: { en: 'Data and messaging', th: 'ฐานข้อมูลและระบบส่งข้อความ' },
+    items: ['PostgreSQL', 'MySQL', 'MSSQL', 'MongoDB', 'InfluxDB', 'RabbitMQ'],
   },
   {
-    group: { en: 'Platform and DevOps', th: 'แพลตฟอร์มและ DevOps' },
-    items: ['Docker', 'Nginx', 'Jenkins', 'SonarQube', 'Grafana', 'AWS', 'Railway', 'GitHub', 'GitLab', 'MCP servers'],
+    group: { en: 'Cloud and IaC', th: 'คลาวด์และ IaC' },
+    items: ['AWS', 'Terraform', 'Terragrunt', 'Docker', 'Nginx'],
+  },
+  {
+    group: { en: 'CI/CD and quality', th: 'CI/CD และคุณภาพโค้ด' },
+    items: ['Jenkins', 'GitLab', 'GitHub', 'SonarQube', 'Playwright', 'Vitest', 'Grafana'],
+  },
+  {
+    group: { en: 'AI tooling', th: 'เครื่องมือ AI' },
+    items: ['MCP servers', 'Claude Code'],
   },
 ];
 
@@ -265,8 +294,7 @@ export type Certificate = {
   short?: string;
 };
 
-/* Issuers read off the certificate images. TOEIC has no thumbnail on purpose:
-   the score report shows date of birth and a registration ID. */
+// Issuers read off the certificate images.
 export const certificates: Certificate[] = [
   {
     slug: 'toeic-2025',

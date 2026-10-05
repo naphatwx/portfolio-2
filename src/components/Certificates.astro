@@ -51,7 +51,7 @@ const firstFull = items.find((i) => i.full)?.full;
             />
           </button>
         ) : (
-          /* No image (TOEIC report shows personal data): type-only tile keeps the grid even. */
+          /* No image: type-only tile keeps the grid even. */
           <div class="flex aspect-[1.414] w-full items-center justify-center border border-rule bg-shade">
             <p class="text-3xl font-medium tracking-tight text-muted">{cert.short ?? cert.issuer}</p>
           </div>

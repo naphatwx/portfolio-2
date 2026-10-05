@@ -1,0 +1,206 @@
+/* CV sheet. Tokens mirror the site (README "Design rules"); sizes are print units. */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+:root {
+  --fg: #222222;
+  --muted: #6e6e73;
+  --rule: #e6e6e6;
+  --accent: #c4291c;
+  --rail: 34mm;
+  --gap: 6mm;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #ffffff;
+  color: var(--fg);
+  font: 400 8.9pt/1.42 "Inter", "Anuphan", system-ui, sans-serif;
+  font-feature-settings: "cv05" 1, "cv08" 1, "calt" 1;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+:lang(th) {
+  font-family: "Anuphan", "Inter", system-ui, sans-serif;
+  font-size: 9pt;
+  line-height: 1.5;
+}
+
+.sheet {
+  width: 210mm;
+  height: 297mm;
+  padding: 12mm 15mm 9mm;
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+h1, h2, h3 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+address {
+  font-style: normal;
+}
+.strong {
+  font-weight: 500;
+}
+.muted {
+  color: var(--muted);
+}
+
+/* Small tracked caps for metadata only, as on the site. */
+.label {
+  font-size: 6.8pt;
+  font-weight: 500;
+  line-height: 1.5;
+  /* Kept low: wider tracking splits words in the PDF text layer and breaks ATS parsing. */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+:lang(th) .label {
+  font-size: 7.4pt;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* The one oversized move. */
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--gap);
+  align-items: end;
+  padding-bottom: 3.6mm;
+  border-bottom: 1px solid var(--fg);
+}
+.name {
+  font-size: 27pt;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+:lang(th) .name {
+  letter-spacing: -0.035em;
+}
+.title {
+  margin-top: 2.2mm;
+  font-size: 10.5pt;
+  letter-spacing: -0.01em;
+}
+.contact {
+  display: grid;
+  gap: 0.6mm;
+  font-size: 7.8pt;
+  color: var(--muted);
+}
+.contact a {
+  color: var(--fg);
+}
+/* Latin contact strings set in Inter on both sheets; Anuphan's Latin runs wide. */
+:lang(th) .contact a {
+  font-family: "Inter", "Anuphan", system-ui, sans-serif;
+  white-space: nowrap;
+}
+
+/* Label rail + content: the site's experience grid, on paper. */
+.row {
+  display: grid;
+  grid-template-columns: var(--rail) 1fr;
+  gap: var(--gap);
+  padding: 2.6mm 0;
+  border-bottom: 1px solid var(--rule);
+}
+.row:last-child {
+  border-bottom: 0;
+}
+.rail {
+  padding-top: 0.5mm;
+}
+.profile {
+  font-size: 9.4pt;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+
+.role + .role,
+.project + .project {
+  margin-top: 2.2mm;
+}
+.role-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4mm;
+}
+.role-head h3 {
+  font-size: 9.2pt;
+}
+.role-head .label {
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4mm;
+}
+.sep {
+  color: var(--muted);
+}
+.live {
+  width: 1.4mm;
+  height: 1.4mm;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.lede {
+  margin-top: 0.8mm;
+  color: var(--muted);
+}
+
+.points {
+  margin-top: 1.6mm;
+}
+.points > div {
+  display: grid;
+  grid-template-columns: 34mm 1fr;
+  gap: 4mm;
+  padding: 0.75mm 0;
+  border-top: 1px solid var(--rule);
+}
+.row > .body > .points {
+  margin-top: 0;
+}
+.row > .body > .points > div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.points dt {
+  padding-top: 0.35mm;
+}
+
+/* Reference list: rows without rules, so it reads lighter than the role points. */
+.stack > div {
+  border-top: 0;
+  padding: 0.25mm 0;
+}
+
+.certs {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--gap);
+  row-gap: 0.4mm;
+  font-size: 7.9pt;
+}
+.certs li {
+  white-space: nowrap;
+}

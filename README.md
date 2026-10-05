@@ -17,6 +17,7 @@ translation.
 | `npm run build` | Static build to `dist/` |
 | `npm run preview` | Serve the built output |
 | `npm run check` | Type and template check |
+| `npm run cv` | One-page A4 CVs from `src/data/site.ts` to `public/cv.pdf` and `public/cv-th.pdf` (needs Google Chrome); fails if content overflows the page |
 
 ## Design rules
 

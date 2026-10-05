@@ -33,9 +33,9 @@ const current = experience[0];
             <Icon id="mail" class="size-4" />
             {t('hero.emailMe')}
           </a>
-          {person.cv && (
+          {person.cv?.[lang] && (
             <a
-              href={person.cv}
+              href={person.cv[lang]}
               download
               class="inline-flex h-9 items-center gap-2 border border-rule px-4 text-sm font-medium transition-colors hover:border-fg"
             >
